@@ -112,80 +112,80 @@ function backgroundBasedOnType(pokemonType) {
     let backgroundColour; 
     switch(types[0].toLowerCase()){
         case "normal":
-            backgroundColour = "gray";
+            backgroundColour = "$normalType";
             break;
 
         case "fire":
-            backgroundColour = "red";
+            backgroundColour = "$fireType";
             break;
 
         case "water":
-            backgroundColour = "blue";
+            backgroundColour = "$waterType";
             break;
 
         case "electric":
-            backgroundColour = "yellow";
+            backgroundColour = "$electricType";
             break;
 
         case "grass":
-            backgroundColour = "$greenishCard";
+            backgroundColour = "$grassType";
             break;
 
         case "ice":
-            backgroundColour = "lightblue";
+            backgroundColour = "$iceType";
             break;
 
         case "fighting":
-            backgroundColour = "maroon";
+            backgroundColour = "$fightingType";
             break;
 
         case "poison":
-            backgroundColour = "purple";
+            backgroundColour = "$poisonType";
             break;
 
         case "ground":
-            backgroundColour = "brown";
+            backgroundColour = "$groundType";
             break;
 
         case "flying":
-            backgroundColour = "aliceblue";
+            backgroundColour = "$flyingType";
             break;
 
         case "psychic":
-            backgroundColour = "plum";
+            backgroundColour = "$psychicType";
             break;
 
         case "bug":
-            backgroundColour = "lightgreen";
+            backgroundColour = "$bugType";
             break;
 
         case "rock":
-            backgroundColour = "darkgray";
+            backgroundColour = "$rockType";
             break;
 
         case "ghost":
-            backgroundColour = "darkpurple";
+            backgroundColour = "$ghostType";
             break;
 
         case "dragon":
-            backgroundColour = "navy";
+            backgroundColour = "$dragonType";
             break;
 
         case "dark":
-            backgroundColour = "darkslategray";
+            backgroundColour = "$darkType";
             break;
 
         case "steel":
-            backgroundColour = "silver";
+            backgroundColour = "$steelType";
             break;
 
         case "fairy":
-            backgroundColour = "pink";
+            backgroundColour = "$fairyType";
             break;
 
         default:
-            backgroundColour = "black"
+            backgroundColour = "$greenishCard";
     }
-
+    console.log(types[0]);
     return backgroundColour;
 }

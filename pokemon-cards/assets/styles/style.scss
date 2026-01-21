@@ -1,7 +1,29 @@
 $greenishCard: #3BC1A8;
 $buttonBackground: #BDE8F5;
-$buttonBorder: #4988C4;
 $shadow: #0F2854;
+$pastelYellow: #FFDAB3;
+$ghostAlt: #43334C;
+$flyingAlt: #9FB3DF;
+
+$normalType: #9F8383;
+$grassType: #8BAE66;
+$fireType: #EA2F14;
+$waterType: #4988C4;
+$fightingType: #9E3B3B;
+$flyingType: #8FBAF3;
+$poisonType: #B300FF;
+$groundType: #C9B59C;
+$rockType: #B6AE9F;
+$bugType: #BBC863;
+$ghostType: #574964;
+$electricType: #F3C623;
+$psychicType: #B206B0;
+$iceType: #BDDDE4;
+$dragonType: #696FC7;
+$darkType: #230013;
+$steelType: #C8CDFD;
+$fairyType: #FAA4BD;
+
 
 * {
   margin: 0;
@@ -22,7 +44,7 @@ h2 {
     height: 3rem;
     margin: 2vw auto;
     text-align: center;
-    border-color: $buttonBorder;
+    border-color: $waterType;
     background-color: $buttonBackground;
     border-radius: 0.5em;
 
@@ -37,7 +59,7 @@ h2 {
 
     & .pokemonCard {
         display: flex;
-        background-color: $greenishCard;
+        background-color: $black;
         margin-left: auto;
         margin-right: auto;
         margin-top: 2rem;
@@ -49,7 +71,7 @@ h2 {
         transition: 0.3s;
         &:hover {
             transform: translate3d(-0.2em, -0.5em, 0);
-            box-shadow: 0.2em 0.5em 10px $buttonBorder;
+            box-shadow: 0.2em 0.5em 10px $waterType;
         }
     
         &__img {
