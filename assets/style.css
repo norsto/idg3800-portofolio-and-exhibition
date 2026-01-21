@@ -1,0 +1,11 @@
+/* Your styles go here */
+:root {
+    --racetrack-color: #E7D4B5;
+    --finishline-color: #A63636;
+    --startButton-color: #16C47F;
+    --resetButton-color: #FFD65A;
+}
+
+body {
+    background-color: whitesmoke;
+}

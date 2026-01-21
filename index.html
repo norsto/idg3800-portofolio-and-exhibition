@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans">
+    <link href="http://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
+    <title>Oblig 1 | Web components | IDG2100</title>
+    <link rel="stylesheet" href="./assets/core.css">
+    <link rel="stylesheet" href="./assets/style.css">
+    <script type="module" src="components/countdown-component.js" defer></script>
+    <script type="module" src="components/racetrack-component.js" defer></script>
+    <script type="module" src="components/racehorse-component.js" defer></script>
+    <script type="module" src="components/racehistory-component.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1> Fast Horse Race 🏇💨</h1>
+        <p>
+            The race is about to start! Each player controls a horse and has a key assigned. 
+            Press your key as fast as you can to make your horse run. 
+            The first horse to reach the finish line wins! 
+            Are you ready? Get set… GO!
+        </p>
+        <countdown-timer id="countdownTimer" seconds="5"></countdown-timer>
+    </header>
+    <main>
+        <h2>Race track</h2>
+
+        <race-track>
+            <race-horse name="hors" key="l"></race-horse>
+            <race-horse name="flors" key="a"></race-horse>
+            <race-horse name="gnors" key="g"></race-horse>
+            <race-horse name="mors" key="c"></race-horse>
+            <race-horse name="bors" key="n"></race-horse>
+            <!--you could add more horses, but the racetrack may become to tall, so you can't see all the horses-->
+        </race-track>
+    </main>
+
+    <aside>
+        <h2>Race History</h2>
+        <race-history></race-history>
+    </aside>
+    
+    <footer>
+        <p>Nora Storrø</p>
+    </footer>
+</body>
+
+</html>
