@@ -62,9 +62,9 @@ function addPokemon(pokemonSpriteUrl, pokemonName, pokemonType) {
 
     // Putting the img into the new div
     newPokemonCard.appendChild(newPokemon);
-    let backgroundColour = backgroundBasedOnType(pokemonType);
-    console.log(backgroundColour);
-    newPokemonCard.style.backgroundColor = backgroundColour;
+    let cardBackground = backgroundBasedOnType(pokemonType);
+    console.log(cardBackground);
+    newPokemonCard.style.backgroundColor = cardBackground;
 
     // Putting the div into the already exsisting yourPokedex div
     yourPokedex.insertAdjacentElement("beforeend", newPokemonCard);
@@ -109,83 +109,82 @@ function backgroundBasedOnType(pokemonType) {
     console.log(types);
 
     // set background
-    let backgroundColour; 
+    let cardBackground; 
     switch(types[0].toLowerCase()){
         case "normal":
-            backgroundColour = "$normalType";
+            cardBackground = "#9F8383";
             break;
 
         case "fire":
-            backgroundColour = "$fireType";
+            cardBackground = "#EA2F14";
             break;
 
         case "water":
-            backgroundColour = "$waterType";
+            cardBackground = "#4988C4";
             break;
 
         case "electric":
-            backgroundColour = "$electricType";
+            cardBackground = "#F3C623";
             break;
 
         case "grass":
-            backgroundColour = "$grassType";
+            cardBackground = "#8BAE66";
             break;
 
         case "ice":
-            backgroundColour = "$iceType";
+            cardBackground = "#BDDDE4";
             break;
 
         case "fighting":
-            backgroundColour = "$fightingType";
+            cardBackground = "#9E3B3B";
             break;
 
         case "poison":
-            backgroundColour = "$poisonType";
+            cardBackground = "#B300FF";
             break;
 
         case "ground":
-            backgroundColour = "$groundType";
+            cardBackground = "#C9B59C";
             break;
 
         case "flying":
-            backgroundColour = "$flyingType";
+            cardBackground = "#8FBAF3";
             break;
 
         case "psychic":
-            backgroundColour = "$psychicType";
+            cardBackground = "#B206B0";
             break;
 
         case "bug":
-            backgroundColour = "$bugType";
+            cardBackground = "#BBC863";
             break;
 
         case "rock":
-            backgroundColour = "$rockType";
+            cardBackground = "#B6AE9F";
             break;
 
         case "ghost":
-            backgroundColour = "$ghostType";
+            cardBackground = "#574964";
             break;
 
         case "dragon":
-            backgroundColour = "$dragonType";
+            cardBackground = "#696FC7";
             break;
 
         case "dark":
-            backgroundColour = "$darkType";
+            cardBackground = "#230013";
             break;
 
         case "steel":
-            backgroundColour = "$steelType";
+            cardBackground = "#C8CDFD";
             break;
 
         case "fairy":
-            backgroundColour = "$fairyType";
+            cardBackground = "#FAA4BD";
             break;
 
         default:
-            backgroundColour = "$greenishCard";
+            cardBackground = "#FFFFFF";
     }
-    console.log(types[0]);
-    return backgroundColour;
+    return cardBackground;
 }
