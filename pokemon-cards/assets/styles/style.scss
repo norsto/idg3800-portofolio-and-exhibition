@@ -31,7 +31,7 @@ $fairyType: #FAA4BD;
 }
 
 body {
-    background-color: black;
+    background-color: whitesmoke;
 }
 
 h1,
@@ -59,7 +59,7 @@ h2 {
 
     & .pokemonCard {
         display: flex;
-        background-color: $black;
+        background-color: $greenishCard;
         margin-left: auto;
         margin-right: auto;
         margin-top: 2rem;
@@ -79,7 +79,6 @@ h2 {
             width: 80%;
             background-color: $buttonBackground;
             border-radius: 100%;
-        //    padding: 5px;
         }
     }
 }
