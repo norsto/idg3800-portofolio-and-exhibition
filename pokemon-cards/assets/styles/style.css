@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: black;
+  background-color: bisque;
 }
 
 h1,
@@ -31,7 +31,6 @@ h2 {
 }
 #yourPokedex .pokemonCard {
   display: flex;
-  background-color: #3BC1A8;
   margin-left: auto;
   margin-right: auto;
   margin-top: 2rem;
