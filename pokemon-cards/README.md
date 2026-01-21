@@ -18,6 +18,7 @@ Card get added to the collection, and you can click on each card and look at inf
 ## Later tasks
 - Internal browser saving, for the cards to be saved even though you refresh the page
 - You can only get unique pokemons 
+- change colours of the cards based on which type of pokemon it is
 
 # Sources 
 api: https://pokeapi.co/ 

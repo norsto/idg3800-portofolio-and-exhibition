@@ -4,35 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="pokemon.js" defer></script>
+    <link rel="stylesheet" href="./assets/styles/style.css">
     <title>Pokedex</title>
 </head>
 <body>
     <h1>Pokedex</h1>
+    <button id="pullPokemon" onclick="getRandomPokemon()">Get a Pokemon</button>
 
-    <!--
-    <div id="pullPokemon">
-        consider making this into a button, if that is good practice
-    </div>-->
-    <button id="pullPokemon">Get a Pokemon</button>
 
     <h2>Your Pokemons</h2>
 
-    <div class="pokemon">
-        <!--Initially only shows an img from the api, but once you click it
-        you can see the name of the pokemon and the type-->
-        <!--"infinite scrolling", the cards aren't hardcoded-->
-        <!--
-        <div class="pokemonCard"></div> -> added via js
-        -->
+    <div id="yourPokedex">
+        <!--<div class="pokemon">
+            Initially only shows an img from the api, but once you click it
+            you can see the name of the pokemon and the type-->
+            <!--"infinite scrolling", the cards aren't hardcoded-->
+            <!--
+                
+        </div>-->
+        <!--Remove after making css-->
+        <div class="pokemonCard">
+            <img class="pokemonCard__img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png" alt="picture of a randomized pokemon">
+            <!--would be cool to update the alt text based on w hich pokemon pops up-->
+        </div>
     </div>
 
-    <!--TAKEN FROM THE SAME VIDEO AS IN THE JS FILE-->
-    
+
+    <!--TAKEN FROM THE SAME VIDEO AS IN THE JS FILE
     <input type="text" id="pokemonName" placeholder="Enter pokemon name">
     <button onclick="fetchData()">Fetch pokemon</button>
-    <br> <!--commitin blasphemy-->
+    <br> <!-commitin blasphemy->
 
     <img src="" alt="Pokemon sprite" id="pokemonSprite" style="display: none">
-
+    -->
 </body>
 </html>
