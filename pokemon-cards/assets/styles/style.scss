@@ -1,0 +1,63 @@
+$greenishCard: #3BC1A8;
+$buttonBackground: #BDE8F5;
+$buttonBorder: #4988C4;
+$shadow: #0F2854;
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+}
+
+h1,
+h2 {
+    text-align: center;
+}
+
+#pullPokemon {
+    display: block;
+    height: 3rem;
+    margin: 2vw auto;
+    text-align: center;
+    border-color: $buttonBorder;
+    background-color: $buttonBackground;
+    border-radius: 0.5em;
+
+}
+
+#yourPokedex {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;    
+    margin-left: auto;
+    margin-right: auto;
+
+    & .pokemonCard {
+        display: flex;
+        background-color: $greenishCard;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2rem;
+        width: 15vw;
+        height: 15vw;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px 30px;
+        transition: 0.3s;
+        &:hover {
+            transform: translate3d(-0.2em, -0.5em, 0);
+            box-shadow: 0.2em 0.5em 10px $buttonBorder;
+        }
+    
+        &__img {
+            height: 80%;
+            width: 80%;
+            background-color: $buttonBackground;
+            border-radius: 100%;
+        //    padding: 5px;
+        }
+    }
+}

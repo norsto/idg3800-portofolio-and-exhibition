@@ -1,0 +1,5 @@
+is only here because i don't want the folders to combine.
+
+folder structure should be changed if the only assets are styles i think.
+
+file should be removed if there's other folders in the asset folder.
