@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="pokemon.js" defer></script>
     <title>Pokedex</title>
 </head>
 <body>
     <h1>Pokedex</h1>
 
+    <!--
     <div id="pullPokemon">
-        <!--consider making this into a button, if that is good practice-->
-    </div>
+        consider making this into a button, if that is good practice
+    </div>-->
+    <button id="pullPokemon">Get a Pokemon</button>
 
     <h2>Your Pokemons</h2>
 
@@ -22,5 +25,14 @@
         <div class="pokemonCard"></div> -> added via js
         -->
     </div>
+
+    <!--TAKEN FROM THE SAME VIDEO AS IN THE JS FILE-->
+    
+    <input type="text" id="pokemonName" placeholder="Enter pokemon name">
+    <button onclick="fetchData()">Fetch pokemon</button>
+    <br> <!--commitin blasphemy-->
+
+    <img src="" alt="Pokemon sprite" id="pokemonSprite" style="display: none">
+
 </body>
 </html>
