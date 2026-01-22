@@ -54,17 +54,29 @@ function addPokemon(pokemonSpriteUrl, pokemonName, pokemonType) {
 
     const newPokemonCard = document.createElement("div");
     const newPokemon = document.createElement("img");
+    const newPokemonName = document.createElement("p");
     newPokemon.src = pokemonSpriteUrl;
+    newPokemon.alt = `Picture of ${pokemonName}`;
+    newPokemonName.textContent = pokemonName;
+
+    console.log(pokemonName);
 
     // Adding classes to the given element
     newPokemonCard.classList.add("pokemonCard");
     newPokemon.classList.add("pokemonCard__img");
+    newPokemonName.classList.add("pokemonCard__name");
 
-    // Putting the img into the new div
+    // Putting the img and namr into the new div
     newPokemonCard.appendChild(newPokemon);
+    newPokemonCard.appendChild(newPokemonName);
+    console.log(newPokemon);
+    console.log(newPokemonName);
+
+    // Calling the backgroundBasedOnType function to change card colour based on pokemon type
     let cardBackground = backgroundBasedOnType(pokemonType);
-    console.log(cardBackground);
+    let spriteBackground = spriteBgBasedOnType(pokemonType);
     newPokemonCard.style.backgroundColor = cardBackground;
+    newPokemon.style.backgroundColor = spriteBackground;
 
     // Putting the div into the already exsisting yourPokedex div
     yourPokedex.insertAdjacentElement("beforeend", newPokemonCard);
@@ -97,6 +109,7 @@ async function getRandomPokemon() {
     }
 }
 
+// Switches backgroundcolour based on type of pokemon
 function backgroundBasedOnType(pokemonType) {
     // recieve data.type
     const types = [];
@@ -106,65 +119,66 @@ function backgroundBasedOnType(pokemonType) {
         let type = element.type.name;
         types.push(type);
     });
-    console.log(types);
 
     // set background
     let cardBackground; 
     switch(types[0].toLowerCase()){
         case "normal":
-            cardBackground = "#9F8383";
+            cardBackground = "#d6b9b9";
+            spriteBackground = "#FFDAB3";
             break;
 
         case "fire":
-            cardBackground = "#EA2F14";
+            cardBackground = "#ea4214";
+            spriteBackground = "#3BC1A8";
             break;
 
         case "water":
-            cardBackground = "#4988C4";
+            cardBackground = "#176aee";
             break;
 
         case "electric":
-            cardBackground = "#F3C623";
+            cardBackground = "#ffc800";
             break;
 
         case "grass":
-            cardBackground = "#8BAE66";
+            cardBackground = "#82c368";
             break;
 
         case "ice":
-            cardBackground = "#BDDDE4";
+            cardBackground = "#a2e1ff";
             break;
 
         case "fighting":
-            cardBackground = "#9E3B3B";
+            cardBackground = "#a40a0a";
             break;
 
         case "poison":
-            cardBackground = "#B300FF";
+            cardBackground = "#b300ff";
             break;
 
         case "ground":
-            cardBackground = "#C9B59C";
+            cardBackground = "#be9780";
             break;
 
         case "flying":
-            cardBackground = "#8FBAF3";
+            cardBackground = "#8dabfd";
             break;
 
         case "psychic":
-            cardBackground = "#B206B0";
+            cardBackground = "#dd00ff";
             break;
 
         case "bug":
-            cardBackground = "#BBC863";
+            cardBackground = "#d9ee3a";
             break;
 
         case "rock":
-            cardBackground = "#B6AE9F";
+            cardBackground = "#9e9088";
             break;
 
         case "ghost":
-            cardBackground = "#574964";
+            cardBackground = "#3e1d73";
             break;
 
         case "dragon":
@@ -172,19 +186,40 @@ function backgroundBasedOnType(pokemonType) {
             break;
 
         case "dark":
-            cardBackground = "#230013";
+            cardBackground = "#30011b";
             break;
 
         case "steel":
-            cardBackground = "#C8CDFD";
+            cardBackground = "#c6c9eb";
             break;
 
         case "fairy":
-            cardBackground = "#FAA4BD";
+            cardBackground = "#fd95b3";
             break;
 
         default:
             cardBackground = "#FFFFFF";
     }
     return cardBackground;
+}
+
+function spriteBgBasedOnType(pokemonType) {
+        // recieve data.type
+    const types = [];
+
+    // extract types from data 
+    pokemonType.forEach(element => {
+        let type = element.type.name;
+        types.push(type);
+    });
+
+    let spriteBackground;
+    switch(types[0].toLowerCase()){
+        case "normal":
+            spriteBackground = "#fd95b3";
+            break;
+        default:
+            spriteBackground = "#FFFFFF";
+    }
+    return spriteBackground;
 }

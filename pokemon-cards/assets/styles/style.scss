@@ -1,33 +1,34 @@
 $greenishCard: #3BC1A8;
 $buttonBackground: #BDE8F5;
-$shadow: #0F2854;
+//$shadow: #0e032f;
+$shadow: #0e032fcf;
 $pastelYellow: #FFDAB3;
 $ghostAlt: #43334C;
 $flyingAlt: #9FB3DF;
 
-$normalType: #9F8383;
-$grassType: #8BAE66;
-$fireType: #EA2F14;
-$waterType: #4988C4;
-$fightingType: #9E3B3B;
-$flyingType: #8FBAF3;
-$poisonType: #B300FF;
-$groundType: #C9B59C;
-$rockType: #B6AE9F;
-$bugType: #BBC863;
-$ghostType: #574964;
-$electricType: #F3C623;
-$psychicType: #B206B0;
-$iceType: #BDDDE4;
-$dragonType: #696FC7;
-$darkType: #230013;
-$steelType: #C8CDFD;
-$fairyType: #FAA4BD;
+$normalType: #d6b9b9;
+$grassType: #82c368;
+$fireType: #ea4214;
+$waterType: #176aee;
+$fightingType: #a40a0a;
+$flyingType: #8dabfd;
+$poisonType: #b300ff;
+$groundType: #be9780;
+$rockType: #9e9088;
+$bugType: #d9ee3a;
+$ghostType: #3e1d73;
+$electricType: #ffc800;
+$psychicType: #dd00ff;
+$iceType: #a2e1ff;
+$dragonType: #696fc7;
+$darkType: #30011b;
+$steelType: #c6c9eb;
+$fairyType: #fd95b3;
 
 
 * {
-  margin: 0;
-  box-sizing: border-box;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -59,26 +60,34 @@ h2 {
 
     & .pokemonCard {
         display: flex;
+        flex-wrap: wrap;
         background-color: $greenishCard;
         margin-left: auto;
         margin-right: auto;
         margin-top: 2rem;
-        width: 15vw;
-        height: 15vw;
+        width: 15rem;
+        height: 18rem;
         align-items: center;
         justify-content: center;
-        border-radius: 10px 30px;
+        border-radius: 10px 40px;
         transition: 0.3s;
         &:hover {
             transform: translate3d(-0.2em, -0.5em, 0);
-            box-shadow: 0.2em 0.5em 10px $waterType;
+            box-shadow: 0.2em 0.5em 10px $shadow;
         }
     
         &__img {
-            height: 80%;
-            width: 80%;
+            height: 12rem;
+            width: 12rem;
             background-color: $buttonBackground;
             border-radius: 100%;
+        }
+
+        &__name {
+            color: black;
+            padding-left: 1em;
+            padding-right: 1em;
+            font-size: 2em;
         }
     }
 }
