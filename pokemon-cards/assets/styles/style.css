@@ -17,7 +17,7 @@ h2 {
   height: 3rem;
   margin: 2vw auto;
   text-align: center;
-  border-color: #4988C4;
+  border-color: #176aee;
   background-color: #BDE8F5;
   border-radius: 0.5em;
 }
@@ -31,24 +31,31 @@ h2 {
 }
 #yourPokedex .pokemonCard {
   display: flex;
+  flex-wrap: wrap;
   background-color: #3BC1A8;
   margin-left: auto;
   margin-right: auto;
   margin-top: 2rem;
-  width: 15vw;
-  height: 15vw;
+  width: 15rem;
+  height: 18rem;
   align-items: center;
   justify-content: center;
-  border-radius: 10px 30px;
+  border-radius: 10px 40px;
   transition: 0.3s;
 }
 #yourPokedex .pokemonCard:hover {
   transform: translate3d(-0.2em, -0.5em, 0);
-  box-shadow: 0.2em 0.5em 10px #4988C4;
+  box-shadow: 0.2em 0.5em 10px rgba(14, 3, 47, 0.8117647059);
 }
 #yourPokedex .pokemonCard__img {
-  height: 80%;
-  width: 80%;
+  height: 12rem;
+  width: 12rem;
   background-color: #BDE8F5;
   border-radius: 100%;
+}
+#yourPokedex .pokemonCard__name {
+  color: black;
+  padding-left: 1em;
+  padding-right: 1em;
+  font-size: 2em;
 }/*# sourceMappingURL=style.css.map */
