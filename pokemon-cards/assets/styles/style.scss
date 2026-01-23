@@ -40,15 +40,23 @@ h2 {
     text-align: center;
 }
 
+h1 {
+    font-size: 4em;
+}
+
+h2 {
+    font-size: 3em;
+}
+
 #pullPokemon {
     display: block;
-    height: 3rem;
+    height: 3em;
     margin: 2vw auto;
     text-align: center;
     border-color: $waterType;
     background-color: $buttonBackground;
     border-radius: 0.5em;
-
+    font-size: 1.5em;
 }
 
 #yourPokedex {
@@ -62,9 +70,11 @@ h2 {
         display: flex;
         flex-wrap: wrap;
         background-color: $greenishCard;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 2rem;
+        //margin-left: auto;
+        //margin-right: auto;
+        //margin-top: 1rem;
+        //margin-bottom: 1rem;
+        margin: 1rem auto;
         width: 15rem;
         height: 18rem;
         align-items: center;
