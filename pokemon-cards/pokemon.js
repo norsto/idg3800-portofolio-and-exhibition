@@ -73,10 +73,13 @@ function addPokemon(pokemonSpriteUrl, pokemonName, pokemonType) {
     console.log(newPokemonName);
 
     // Calling the backgroundBasedOnType function to change card colour based on pokemon type
-    let cardBackground = backgroundBasedOnType(pokemonType);
-    let spriteBackground = spriteBgBasedOnType(pokemonType);
-    newPokemonCard.style.backgroundColor = cardBackground;
-    newPokemon.style.backgroundColor = spriteBackground;
+    //let cardBackground = backgroundBasedOnType(pokemonType);
+    let cardColour = backgroundBasedOnType(pokemonType);
+    //let spriteBackground = spriteBgBasedOnType(pokemonType);
+    //newPokemonCard.style.backgroundColor = cardBackground;
+    newPokemon.style.backgroundColor = cardColour.spriteBackground;
+    newPokemonName.style.color = cardColour.textColour;
+    newPokemonCard.style.backgroundColor = cardColour.cardBackground;
 
     // Putting the div into the already exsisting yourPokedex div
     yourPokedex.insertAdjacentElement("beforeend", newPokemonCard);
@@ -120,87 +123,155 @@ function backgroundBasedOnType(pokemonType) {
         types.push(type);
     });
 
+    // {} []
     // set background
-    let cardBackground; 
+    //let cardColour;
+    let cardColour;
+    //let cardBackground; 
+    //let spriteBackground;
     switch(types[0].toLowerCase()){
-        case "normal":
-            cardBackground = "#d6b9b9";
-            spriteBackground = "#FFDAB3";
-            break;
+        case "normal": 
+            cardColour = {
+                cardBackground: "#d6b9b9", 
+                //spriteBackground: "#efe3e3",
+                spriteBackground: "#ffffffbf"
+            }
+        break;
 
-        case "fire":
-            cardBackground = "#ea4214";
-            spriteBackground = "#3BC1A8";
-            break;
+        case "fire": 
+            cardColour = {
+                cardBackground: "#ea4214",
+                spriteBackground: "#f7b3a1"
+                //spriteBackground: "#ffffffbf"
+            }
+        break;
 
-        case "water":
-            cardBackground = "#176aee";
-            break;
+        case "water": 
+            cardColour = {
+                cardBackground: "#176aee",
+                spriteBackground: "#a2c3f7",
+                textColour: "#f2f2ff"
+            }
+        break;
+        
+        case "electric": 
+            cardColour = {
+                cardBackground: "#ffc800",
+                spriteBackground: "#ffe999"
+            }
+        break; 
 
-        case "electric":
-            cardBackground = "#ffc800";
-            break;
+        case "grass": 
+            cardColour = {
+                cardBackground: "#82c368",
+                spriteBackground: "#cde7c3"
+            }
+        break; 
 
-        case "grass":
-            cardBackground = "#82c368";
-            break;
+        case "ice": 
+            cardColour = {
+                cardBackground: "#a2e1ff",
+                spriteBackground: "#daf3ff"
+            }
+        break; 
 
-        case "ice":
-            cardBackground = "#a2e1ff";
-            break;
+        case "fighting": 
+            cardColour = {
+                cardBackground: "#a40a0a",
+                spriteBackground: "#db9d9d",
+                textColour: "#f2f2ff"
+            }
+        break; 
 
-        case "fighting":
-            cardBackground = "#a40a0a";
-            break;
+        case "poison": 
+            cardColour = {
+                cardBackground: "#b300ff",
+                spriteBackground: "#e199ff"
+            }
+        break; 
 
-        case "poison":
-            cardBackground = "#b300ff";
-            break;
+        case "ground": 
+            cardColour = {
+                cardBackground: "#be9780",
+                spriteBackground: "#e5d5cc"
+            }
+        break; 
 
-        case "ground":
-            cardBackground = "#be9780";
-            break;
+        case "flying": 
+            cardColour = {
+                cardBackground: "#8dabfd",
+                spriteBackground: "#d1ddfe"
+            }
+        break; 
 
-        case "flying":
-            cardBackground = "#8dabfd";
-            break;
+        case "psychic": 
+            cardColour = {
+                cardBackground: "#dd00ff",
+                spriteBackground: "#f199ff"
+            }
+        break; 
 
-        case "psychic":
-            cardBackground = "#dd00ff";
-            break;
+        case "bug": 
+            cardColour = {
+                cardBackground: "#d9ee3a",
+                spriteBackground: "#f0f8b0"
+            }
+        break; 
 
-        case "bug":
-            cardBackground = "#d9ee3a";
-            break;
+        case "rock": 
+            cardColour = {
+                cardBackground: "#9e9088",
+                spriteBackground: "#d8d3cf"
+            }
+        break; 
 
-        case "rock":
-            cardBackground = "#9e9088";
-            break;
+        case "ghost": 
+            cardColour = {
+                cardBackground: "#3e1d73",
+                spriteBackground: "#b2a5c7",
+                textColour: "#f2f2ff"
+            }
+        break; 
 
-        case "ghost":
-            cardBackground = "#3e1d73";
-            break;
+        case "dragon": 
+            cardColour = {
+                cardBackground: "#696FC7",
+                spriteBackground: "#c3c5e9"
+            }
+        break; 
 
-        case "dragon":
-            cardBackground = "#696FC7";
-            break;
+        case "dark": 
+            cardColour = {
+                cardBackground: "#30011b",
+                spriteBackground: "#ac99a4",
+                textColour: "#f2f2ff"
+            }
+        break; 
 
-        case "dark":
-            cardBackground = "#30011b";
-            break;
+        case "steel": 
+            cardColour = {
+                cardBackground: "#c6c9eb",
+                spriteBackground: "#e8e9f7"
+            }
+        break; 
 
-        case "steel":
-            cardBackground = "#c6c9eb";
-            break;
-
-        case "fairy":
-            cardBackground = "#fd95b3";
-            break;
+        case "fairy": 
+            cardColour = {
+                cardBackground: "#fd95b3",
+                spriteBackground: "#fed5e1"
+            }
+        break; 
 
         default:
-            cardBackground = "#FFFFFF";
+            cardColour = {
+                cardBackground: "#FFFFFF",
+                spriteBackground: "#000000"
+            }
     }
-    return cardBackground;
+
+    console.log(cardColour);
+    //return cardBackground;
+    return cardColour;
 }
 
 function spriteBgBasedOnType(pokemonType) {
