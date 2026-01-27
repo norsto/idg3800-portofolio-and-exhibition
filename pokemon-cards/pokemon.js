@@ -95,7 +95,7 @@ async function getRandomPokemon() {
         if(!response.ok){
             throw new Error("Couldn't fetch pokemon");
         }
-                
+
         const data = await response.json();
         console.log(data);
 
@@ -272,25 +272,4 @@ function backgroundBasedOnType(pokemonType) {
     console.log(cardColour);
     //return cardBackground;
     return cardColour;
-}
-
-function spriteBgBasedOnType(pokemonType) {
-        // recieve data.type
-    const types = [];
-
-    // extract types from data 
-    pokemonType.forEach(element => {
-        let type = element.type.name;
-        types.push(type);
-    });
-
-    let spriteBackground;
-    switch(types[0].toLowerCase()){
-        case "normal":
-            spriteBackground = "#fd95b3";
-            break;
-        default:
-            spriteBackground = "#FFFFFF";
-    }
-    return spriteBackground;
 }

@@ -25,3 +25,6 @@ Card get added to the collection, and you can click on each card and look at inf
 # Sources 
 api: https://pokeapi.co/ 
 youTube tutorial that's similar to the project: https://www.youtube.com/watch?v=37vxWr0WgQk
+
+YouTube video for grid:
+https://www.youtube.com/watch?v=EiNiSFIPIQE 

@@ -1,5 +1,7 @@
 $greenishCard: #3BC1A8;
 $buttonBackground: #BDE8F5;
+$lightText: #f2f2ff;
+
 //$shadow: #0e032f;
 $shadow: #0e032fcf;
 $pastelYellow: #FFDAB3;
@@ -53,15 +55,31 @@ h2 {
     height: 3em;
     margin: 2vw auto;
     text-align: center;
-    border-color: $waterType;
+    border: 2px solid $waterType;
     background-color: $buttonBackground;
     border-radius: 0.5em;
+    //border-radius: 0.5em 1em;
     font-size: 1.5em;
+    transition: 0.4s;
+    &:hover {
+        background-color: $waterType;
+        color: $lightText;
+        transform: scale(1.03, 1.03);
+    }
 }
 
 #yourPokedex {
+/*
     display: flex;
     flex-wrap: wrap;
+    width: 70%;    
+    margin-left: auto;
+    margin-right: auto;
+*/
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-auto-rows: 2fr;
+    grid-gap: 1em 1em;
     width: 70%;    
     margin-left: auto;
     margin-right: auto;
@@ -90,6 +108,7 @@ h2 {
             height: 12rem;
             width: 12rem;
             background-color: $buttonBackground;
+            //border-radius: 10px 40px;
             border-radius: 100%;
         }
 
