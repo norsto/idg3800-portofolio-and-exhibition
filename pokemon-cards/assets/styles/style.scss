@@ -1,6 +1,7 @@
 $greenishCard: #3BC1A8;
 $buttonBackground: #BDE8F5;
 $lightText: #f2f2ff;
+$transparentWhite: #ffffff80;
 
 //$shadow: #0e032f;
 $shadow: #0e032fcf;
@@ -40,6 +41,7 @@ body {
 h1,
 h2 {
     text-align: center;
+    margin-top: 5%;
 }
 
 h1 {
@@ -107,7 +109,8 @@ h2 {
         &__img {
             height: 12rem;
             width: 12rem;
-            background-color: $buttonBackground;
+            background-color: $transparentWhite,
+;
             //border-radius: 10px 40px;
             border-radius: 100%;
         }

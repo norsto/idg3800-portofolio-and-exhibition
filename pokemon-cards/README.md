@@ -18,7 +18,8 @@ Card get added to the collection, and you can click on each card and look at inf
 - Internal browser saving, for the cards to be saved even though you refresh the page
 - You can only get unique pokemons 
 - change colours of the cards based on which type of pokemon it is (done)
-- change colours of the background of the images based on pokemon type
+    - make a gradient if the pokemon has multiple types 
+- change colours of the background of the images based on pokemon type (done)
 - make the names of the pokemon start with uppercase 
 - Make it so the sprites are randomized (you can get a shiy one, a default one, so on)
 

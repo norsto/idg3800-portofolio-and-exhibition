@@ -77,9 +77,9 @@ function addPokemon(pokemonSpriteUrl, pokemonName, pokemonType) {
     let cardColour = backgroundBasedOnType(pokemonType);
     //let spriteBackground = spriteBgBasedOnType(pokemonType);
     //newPokemonCard.style.backgroundColor = cardBackground;
-    newPokemon.style.backgroundColor = cardColour.spriteBackground;
+    newPokemon.style.background = cardColour.spriteBackground;
     newPokemonName.style.color = cardColour.textColour;
-    newPokemonCard.style.backgroundColor = cardColour.cardBackground;
+    newPokemonCard.style.background = cardColour.cardBackground;
 
     // Putting the div into the already exsisting yourPokedex div
     yourPokedex.insertAdjacentElement("beforeend", newPokemonCard);
@@ -114,162 +114,80 @@ async function getRandomPokemon() {
 
 // Switches backgroundcolour based on type of pokemon
 function backgroundBasedOnType(pokemonType) {
-    // recieve data.type
-    const types = [];
 
-    // extract types from data 
-    pokemonType.forEach(element => {
-        let type = element.type.name;
-        types.push(type);
-    });
+    const typeColour = {
+        normal: "#d6b9b9",
+        fire: "#ea4214",
+        water: "#176aee",
+        electric: "#ffc800",
+        grass: "#82c368",
+        ice: "#a2e1ff",
+        fighting: "#a40a0a",
+        poison: "#b300ff",
+        ground: "#be9780",
+        flying: "#8dabfd",
+        psychic: "#dd00ff",
+        bug: "#d9ee3a",
+        rock: "#9e9088",
+        ghost: "#3e1d73",
+        dragon: "#696FC7",
+        dark: "#30011b",
+        steel: "#c6c9eb",
+        fairy: "#fd95b3"
+    };
 
-    // {} []
-    // set background
-    //let cardColour;
-    let cardColour;
-    //let cardBackground; 
-    //let spriteBackground;
-    switch(types[0].toLowerCase()){
-        case "normal": 
-            cardColour = {
-                cardBackground: "#d6b9b9", 
-                //spriteBackground: "#efe3e3",
-                spriteBackground: "#ffffffbf"
-            }
-        break;
+    const spriteBackgroundColour = {
+        normal: "#efe3e3",
+        fire: "#f7b3a1",
+        water: "#a2c3f7",
+        electric: "#ffe999",
+        grass: "#cde7c3",
+        ice: "#daf3ff",
+        fighting: "#db9d9d",
+        poison: "#e199ff",
+        ground: "#e5d5cc",
+        flying: "#d1ddfe",
+        psychic: "#f199ff",
+        bug: "#f0f8b0",
+        rock: "#d8d3cf",
+        ghost: "#b2a5c7",
+        dragon: "#c3c5e9",
+        dark: "#ac99a4",
+        steel: "#e8e9f7",
+        fairy: "#fed5e1"
+    };
+    
+    const types = pokemonType.map(element => element.type.name.toLowerCase());
 
-        case "fire": 
-            cardColour = {
-                cardBackground: "#ea4214",
-                spriteBackground: "#f7b3a1"
-                //spriteBackground: "#ffffffbf"
-            }
-        break;
+    const primaryColour = typeColour[types[0]] || "#ffffff";
 
-        case "water": 
-            cardColour = {
-                cardBackground: "#176aee",
-                spriteBackground: "#a2c3f7",
-                textColour: "#f2f2ff"
-            }
-        break;
-        
-        case "electric": 
-            cardColour = {
-                cardBackground: "#ffc800",
-                spriteBackground: "#ffe999"
-            }
-        break; 
+    const spriteBackground = spriteBackgroundColour[types[0]] || "#ffffff80";
 
-        case "grass": 
-            cardColour = {
-                cardBackground: "#82c368",
-                spriteBackground: "#cde7c3"
-            }
-        break; 
+    // make this it's own function
+        if (typeColour.water || typeColour.fighting || typeColour.poison || typeColour.ghost || typeColour.dark) {
+            const textColour1 = "#ffffff";
+            return textColour1
+        } else if (typeColour){
+            const textColour2 = "#000000";
+            return textColour2
+        }
 
-        case "ice": 
-            cardColour = {
-                cardBackground: "#a2e1ff",
-                spriteBackground: "#daf3ff"
-            }
-        break; 
+    if (types.length > 1) {
+        const secondaryColour = typeColour[types[1]] || "#000000";
+        const secondarySpriteColour = spriteBackgroundColour[types[1]] || "#ffffff80"
 
-        case "fighting": 
-            cardColour = {
-                cardBackground: "#a40a0a",
-                spriteBackground: "#db9d9d",
-                textColour: "#f2f2ff"
-            }
-        break; 
-
-        case "poison": 
-            cardColour = {
-                cardBackground: "#b300ff",
-                spriteBackground: "#e199ff"
-            }
-        break; 
-
-        case "ground": 
-            cardColour = {
-                cardBackground: "#be9780",
-                spriteBackground: "#e5d5cc"
-            }
-        break; 
-
-        case "flying": 
-            cardColour = {
-                cardBackground: "#8dabfd",
-                spriteBackground: "#d1ddfe"
-            }
-        break; 
-
-        case "psychic": 
-            cardColour = {
-                cardBackground: "#dd00ff",
-                spriteBackground: "#f199ff"
-            }
-        break; 
-
-        case "bug": 
-            cardColour = {
-                cardBackground: "#d9ee3a",
-                spriteBackground: "#f0f8b0"
-            }
-        break; 
-
-        case "rock": 
-            cardColour = {
-                cardBackground: "#9e9088",
-                spriteBackground: "#d8d3cf"
-            }
-        break; 
-
-        case "ghost": 
-            cardColour = {
-                cardBackground: "#3e1d73",
-                spriteBackground: "#b2a5c7",
-                textColour: "#f2f2ff"
-            }
-        break; 
-
-        case "dragon": 
-            cardColour = {
-                cardBackground: "#696FC7",
-                spriteBackground: "#c3c5e9"
-            }
-        break; 
-
-        case "dark": 
-            cardColour = {
-                cardBackground: "#30011b",
-                spriteBackground: "#ac99a4",
-                textColour: "#f2f2ff"
-            }
-        break; 
-
-        case "steel": 
-            cardColour = {
-                cardBackground: "#c6c9eb",
-                spriteBackground: "#e8e9f7"
-            }
-        break; 
-
-        case "fairy": 
-            cardColour = {
-                cardBackground: "#fd95b3",
-                spriteBackground: "#fed5e1"
-            }
-        break; 
-
-        default:
-            cardColour = {
-                cardBackground: "#FFFFFF",
-                spriteBackground: "#000000"
-            }
+        return {
+            cardBackground: `linear-gradient(135deg, ${primaryColour}, 40%, ${secondaryColour})`,
+            spriteBackground: `linear-gradient(315deg, ${spriteBackground}, ${secondarySpriteColour})`,
+            textColour1: textColour1,
+            textColour2: textColour2
+        }
     }
 
-    console.log(cardColour);
-    //return cardBackground;
-    return cardColour;
+    return {
+        cardBackground: primaryColour,
+        spriteBackground: spriteBackground,
+        textColour1: textColour1,
+        textColour2: textColour2
+    }
 }
