@@ -1,46 +1,3 @@
-// fetching pokemons from open api
-
-//directly from yt video: https://www.youtube.com/watch?v=37vxWr0WgQk 
-
-/* Method 1 (is hardcoded)
-fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
-    .then(response => {
-        if(!response.ok){
-            throw new Error("Couldn't fetch resource");
-        }
-        return response.json();
-    })
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
-*/
-
-/*Method 2
-//fetchData(); gets called whenyou click the button
-
-async function fetchData(){
-    try{
-
-        const pokemonName = document.querySelector("#pokemonName").value.toLowerCase();
-
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
-
-        if(!response.ok){
-            throw new Error("Couln't fetch pokemon");
-        }
-
-        const data = await response.json();
-        console.log(data);
-        const pokemonSprite = data.sprites.front_default;
-        const imgElement = document.querySelector("#pokemonSprite");
-
-        imgElement.src = pokemonSprite;
-        imgElement.style.display = "block";
-    }
-    catch(error){
-        console.error(error);
-    }
-}
-*/
 
 // Create new element everytime someone clicks the button
 //Pokemon id's range from 1 - 1025
@@ -82,7 +39,7 @@ function addPokemon(pokemonSpriteUrl, pokemonName, pokemonType) {
     newPokemonCard.style.background = cardColour.cardBackground;
 
     // Putting the div into the already exsisting yourPokedex div
-    yourPokedex.insertAdjacentElement("beforeend", newPokemonCard);
+    yourPokedex.insertAdjacentElement("afterbegin", newPokemonCard);
 }
 
 // Get random pokemon based on id 
@@ -112,82 +69,50 @@ async function getRandomPokemon() {
     }
 }
 
+
 // Switches backgroundcolour based on type of pokemon
 function backgroundBasedOnType(pokemonType) {
-
-    const typeColour = {
-        normal: "#d6b9b9",
-        fire: "#ea4214",
-        water: "#176aee",
-        electric: "#ffc800",
-        grass: "#82c368",
-        ice: "#a2e1ff",
-        fighting: "#a40a0a",
-        poison: "#b300ff",
-        ground: "#be9780",
-        flying: "#8dabfd",
-        psychic: "#dd00ff",
-        bug: "#d9ee3a",
-        rock: "#9e9088",
-        ghost: "#3e1d73",
-        dragon: "#696FC7",
-        dark: "#30011b",
-        steel: "#c6c9eb",
-        fairy: "#fd95b3"
-    };
-
-    const spriteBackgroundColour = {
-        normal: "#efe3e3",
-        fire: "#f7b3a1",
-        water: "#a2c3f7",
-        electric: "#ffe999",
-        grass: "#cde7c3",
-        ice: "#daf3ff",
-        fighting: "#db9d9d",
-        poison: "#e199ff",
-        ground: "#e5d5cc",
-        flying: "#d1ddfe",
-        psychic: "#f199ff",
-        bug: "#f0f8b0",
-        rock: "#d8d3cf",
-        ghost: "#b2a5c7",
-        dragon: "#c3c5e9",
-        dark: "#ac99a4",
-        steel: "#e8e9f7",
-        fairy: "#fed5e1"
-    };
-    
     const types = pokemonType.map(element => element.type.name.toLowerCase());
 
-    const primaryColour = typeColour[types[0]] || "#ffffff";
+    const typeColours = {
+        normal:  { card: "#d6b9b9", spriteBg: "#efe3e3", text: "#000000" },
+        fire:    { card: "#ea4214", spriteBg: "#f7b3a1", text: "#ffffff" },
+        water:   { card: "#176aee", spriteBg: "#a2c3f7", text: "#ffffff" },
+        electric:{ card: "#ffc800", spriteBg: "#ffe999", text: "#000000" },
+        grass:   { card: "#82c368", spriteBg: "#cde7c3", text: "#000000" },
+        ice:     { card: "#a2e1ff", spriteBg: "#daf3ff", text: "#000000" },
+        fighting:{ card: "#a40a0a", spriteBg: "#db9d9d", text: "#ffffff" },
+        poison:  { card: "#b300ff", spriteBg: "#e199ff", text: "#ffffff" },
+        ground:  { card: "#be9780", spriteBg: "#e5d5cc", text: "#000000" },
+        flying:  { card: "#8dabfd", spriteBg: "#d1ddfe", text: "#000000" },
+        psychic: { card: "#dd00ff", spriteBg: "#f199ff", text: "#ffffff" },
+        bug:     { card: "#d9ee3a", spriteBg: "#f0f8b0", text: "#000000" },
+        rock:    { card: "#9e9088", spriteBg: "#d8d3cf", text: "#000000" },
+        ghost:   { card: "#3e1d73", spriteBg: "#b2a5c7", text: "#ffffff" },
+        dragon:  { card: "#696FC7", spriteBg: "#c3c5e9", text: "#ffffff" },
+        dark:    { card: "#30011b", spriteBg: "#ac99a4", text: "#ffffff" },
+        steel:   { card: "#c6c9eb", spriteBg: "#e8e9f7", text: "#000000" },
+        fairy:   { card: "#fd95b3", spriteBg: "#fed5e1", text: "#000000" }
+    };
 
-    const spriteBackground = spriteBackgroundColour[types[0]] || "#ffffff80";
+    const primaryColours = typeColours[types[0]] || "#ffffff";
 
-    // make this it's own function
-        if (typeColour.water || typeColour.fighting || typeColour.poison || typeColour.ghost || typeColour.dark) {
-            const textColour1 = "#ffffff";
-            return textColour1
-        } else if (typeColour){
-            const textColour2 = "#000000";
-            return textColour2
-        }
+    //const spriteBackground = spriteBackgroundColour[types[0]] || "#ffffff80";
 
     if (types.length > 1) {
-        const secondaryColour = typeColour[types[1]] || "#000000";
-        const secondarySpriteColour = spriteBackgroundColour[types[1]] || "#ffffff80"
+        const secondaryColours = typeColours[types[1]] || "#000000";
+        //const secondarySpriteColour = spriteBackgroundColour[types[1]] || "#ffffff80"
 
         return {
-            cardBackground: `linear-gradient(135deg, ${primaryColour}, 40%, ${secondaryColour})`,
-            spriteBackground: `linear-gradient(315deg, ${spriteBackground}, ${secondarySpriteColour})`,
-            textColour1: textColour1,
-            textColour2: textColour2
+            cardBackground: `linear-gradient(in oklab, ${primaryColours.card} 0 30%, ${secondaryColours.card} 70% 100%)`, //135 deg
+            spriteBackground: `linear-gradient(0deg, ${primaryColours.spriteBg}, ${secondaryColours.spriteBg})`, //315 deg 
+            textColour: secondaryColours.text
         }
     }
 
     return {
-        cardBackground: primaryColour,
-        spriteBackground: spriteBackground,
-        textColour1: textColour1,
-        textColour2: textColour2
+        cardBackground: primaryColours.card,
+        spriteBackground: primaryColours.spriteBg,
+        textColour: primaryColours.text
     }
 }
