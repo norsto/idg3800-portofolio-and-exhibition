@@ -10,6 +10,8 @@ const yourPokedex = document.querySelector("#yourPokedex");
 function addPokemon(pokemonSpriteUrl, pokemonName, pokemonType) {
 
     const newPokemonCard = document.createElement("div");
+    const newPokemonCardFront = document.createElement("div");
+    const newPokemonCardBack = document.createElement("div");
     const newPokemon = document.createElement("img");
     const newPokemonName = document.createElement("p");
     newPokemon.src = pokemonSpriteUrl;
@@ -20,12 +22,21 @@ function addPokemon(pokemonSpriteUrl, pokemonName, pokemonType) {
 
     // Adding classes to the given element
     newPokemonCard.classList.add("pokemonCard");
+    newPokemonCardFront.classList.add("pokemonCard__front");
+    newPokemonCardBack.classList.add("pokemonCard__back");
     newPokemon.classList.add("pokemonCard__img");
     newPokemonName.classList.add("pokemonCard__name");
 
-    // Putting the img and namr into the new div
-    newPokemonCard.appendChild(newPokemon);
-    newPokemonCard.appendChild(newPokemonName);
+    // Putting the img and name into the new div
+    // newPokemonCard.appendChild(newPokemon);
+    // newPokemonCard.appendChild(newPokemonName);
+    newPokemonCard.addEventListener("click", flipCard);
+    newPokemonCard.appendChild(newPokemonCardFront);
+    newPokemonCardFront.appendChild(newPokemon);
+    newPokemonCardFront.appendChild(newPokemonName);
+
+    newPokemonCard.appendChild(newPokemonCardBack);
+
     console.log(newPokemon);
     console.log(newPokemonName);
 
@@ -39,7 +50,7 @@ function addPokemon(pokemonSpriteUrl, pokemonName, pokemonType) {
     newPokemonCard.style.background = cardColour.cardBackground;
 
     // Putting the div into the already exsisting yourPokedex div
-    yourPokedex.insertAdjacentElement("afterbegin", newPokemonCard);
+    yourPokedex.insertAdjacentElement("afterbegin", newPokemonCard); // beforeend
 }
 
 // Get random pokemon based on id 
@@ -115,4 +126,24 @@ function backgroundBasedOnType(pokemonType) {
         spriteBackground: primaryColours.spriteBg,
         textColour: primaryColours.text
     }
+}
+
+
+let flippedCard = null;
+
+function flipCard(clickEvent) {
+    const clickedCard = clickEvent.currentTarget;
+
+    if (flippedCard === clickedCard) {
+        clickedCard.classList.remove("pokemonCard--flipped");
+        flippedCard = null;
+        return;
+    }
+
+    if (flippedCard) {
+        clickedCard.classList.remove("pokemonCard--flipped");
+    }
+
+    clickedCard.classList.add("pokemonCard--flipped");
+    flippedCard = clickedCard;
 }

@@ -64,21 +64,33 @@ h2 {
   align-items: center;
   justify-content: center;
   border-radius: 10px 40px;
-  transition: 0.3s;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
 }
-#yourPokedex .pokemonCard:hover {
+#yourPokedex .pokemonCard:hover:not(.pokemonCard--flipped) {
   transform: translate3d(-0.2em, -0.5em, 0);
   box-shadow: 0.2em 0.5em 10px rgba(14, 3, 47, 0.8117647059);
 }
-#yourPokedex .pokemonCard__img {
+#yourPokedex .pokemonCard__front, #yourPokedex .pokemonCard__back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+}
+#yourPokedex .pokemonCard__front__img {
   height: 12rem;
   width: 12rem;
   background-color: rgba(255, 255, 255, 0.5019607843);
   border-radius: 100%;
 }
-#yourPokedex .pokemonCard__name {
+#yourPokedex .pokemonCard__front__name {
   color: black;
   padding-left: 1em;
   padding-right: 1em;
   font-size: 2em;
+}
+#yourPokedex .pokemonCard--flipped {
+  transform: perspective(30rem) rotateY(180deg) translate3d(-0.2em, -0.5em, 0);
+  box-shadow: -0.2em 0.5em 10px rgba(14, 3, 47, 0.8117647059);
 }/*# sourceMappingURL=style.css.map */
