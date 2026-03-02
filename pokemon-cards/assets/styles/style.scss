@@ -122,7 +122,28 @@ h2 {
             }
         }
 
+        &__back {
+            display: flex;
+            flex-direction: column;
+            // background-color: $transparentWhite;
+            transform: rotateY(180deg);
+
+            &--types {
+                color: $darkType;
+                font-size: medium;
+            }
+            &--hp {
+                padding-top: 0.5em;
+            }
+
+            &--types,
+            &--hp {
+                font-size: 1.5em;
+            }
+        }
+
         &--flipped {
+            // transition: 2s ease;
             transform: perspective(30rem) rotateY(180deg) translate3d(-0.2em, -0.5em, 0);
             box-shadow: -0.2em 0.5em 10px $shadow;
         }
