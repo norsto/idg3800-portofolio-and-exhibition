@@ -1,46 +1,3 @@
-// fetching pokemons from open api
-
-//directly from yt video: https://www.youtube.com/watch?v=37vxWr0WgQk 
-
-/* Method 1 (is hardcoded)
-fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
-    .then(response => {
-        if(!response.ok){
-            throw new Error("Couldn't fetch resource");
-        }
-        return response.json();
-    })
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
-*/
-
-/*Method 2
-//fetchData(); gets called whenyou click the button
-
-async function fetchData(){
-    try{
-
-        const pokemonName = document.querySelector("#pokemonName").value.toLowerCase();
-
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
-
-        if(!response.ok){
-            throw new Error("Couln't fetch pokemon");
-        }
-
-        const data = await response.json();
-        console.log(data);
-        const pokemonSprite = data.sprites.front_default;
-        const imgElement = document.querySelector("#pokemonSprite");
-
-        imgElement.src = pokemonSprite;
-        imgElement.style.display = "block";
-    }
-    catch(error){
-        console.error(error);
-    }
-}
-*/
 
 // Create new element everytime someone clicks the button
 //Pokemon id's range from 1 - 1025
@@ -53,21 +10,60 @@ const yourPokedex = document.querySelector("#yourPokedex");
 function addPokemon(pokemonSpriteUrl, pokemonName, pokemonType) {
 
     const newPokemonCard = document.createElement("div");
+    const newPokemonCardFront = document.createElement("div");
+    const newPokemonCardBack = document.createElement("div");
+
     const newPokemon = document.createElement("img");
+    const newPokemonName = document.createElement("p");
+
+    const newPokemonTypes = document.createElement("p");
+
     newPokemon.src = pokemonSpriteUrl;
+    newPokemon.alt = `Picture of ${pokemonName}`;
+    newPokemonName.textContent = pokemonName;
+
+    newPokemonTypes.textContent = pokemonType;
+
+    console.log(pokemonName);
 
     // Adding classes to the given element
     newPokemonCard.classList.add("pokemonCard");
-    newPokemon.classList.add("pokemonCard__img");
+    newPokemonCardFront.classList.add("pokemonCard__front");
+    newPokemonCardBack.classList.add("pokemonCard__back");
 
-    // Putting the img into the new div
-    newPokemonCard.appendChild(newPokemon);
-    let cardBackground = backgroundBasedOnType(pokemonType);
-    console.log(cardBackground);
-    newPokemonCard.style.backgroundColor = cardBackground;
+    newPokemon.classList.add("pokemonCard__front--img");
+    newPokemonName.classList.add("pokemonCard__front--name");
+
+    newPokemonTypes.classList.add("pokemonCard__back--types");
+
+
+    // Putting the img and name into the new div
+    // newPokemonCard.appendChild(newPokemon);
+    // newPokemonCard.appendChild(newPokemonName);
+    newPokemonCard.addEventListener("click", flipCard);
+    newPokemonCard.appendChild(newPokemonCardFront);
+    newPokemonCard.appendChild(newPokemonCardBack);
+
+    newPokemonCardFront.appendChild(newPokemon);
+    newPokemonCardFront.appendChild(newPokemonName);
+
+    newPokemonCardBack.appendChild(newPokemonTypes);
+
+    console.log(newPokemon);
+    console.log(newPokemonName);
+    console.log(newPokemonTypes);
+
+    // Calling the backgroundBasedOnType function to change card colour based on pokemon type
+    //let cardBackground = backgroundBasedOnType(pokemonType);
+    let cardColour = backgroundBasedOnType(pokemonType);
+    //let spriteBackground = spriteBgBasedOnType(pokemonType);
+    //newPokemonCard.style.backgroundColor = cardBackground;
+    newPokemon.style.background = cardColour.spriteBackground;
+    newPokemonName.style.color = cardColour.textColour;
+    newPokemonCard.style.background = cardColour.cardBackground;
 
     // Putting the div into the already exsisting yourPokedex div
-    yourPokedex.insertAdjacentElement("beforeend", newPokemonCard);
+    yourPokedex.insertAdjacentElement("afterbegin", newPokemonCard); // beforeend
 }
 
 // Get random pokemon based on id 
@@ -80,13 +76,14 @@ async function getRandomPokemon() {
         if(!response.ok){
             throw new Error("Couldn't fetch pokemon");
         }
-                
+
         const data = await response.json();
         console.log(data);
 
         const spriteUrl = data.sprites.front_default;
         const pokemonName = data.name;
         const pokemonType = data.types;
+        // const pokemonPrimaryType = data.types[0].type; // don't need to do this
         console.log(pokemonType);
 
         //Parameter get passed to addPokemon()
@@ -97,94 +94,76 @@ async function getRandomPokemon() {
     }
 }
 
+
+// Switches background colour based on type of pokemon
 function backgroundBasedOnType(pokemonType) {
-    // recieve data.type
-    const types = [];
+    const types = pokemonType.map(element => element.type.name.toLowerCase());
 
-    // extract types from data 
-    pokemonType.forEach(element => {
-        let type = element.type.name;
-        types.push(type);
-    });
-    console.log(types);
+    // colour map related to the pokemons
+    const typeColours = {
+        normal:  { card: "#d6b9b9", spriteBg: "#efe3e3", text: "#000000" },
+        fire:    { card: "#ea4214", spriteBg: "#f7b3a1", text: "#ffffff" },
+        water:   { card: "#176aee", spriteBg: "#a2c3f7", text: "#ffffff" },
+        electric:{ card: "#ffc800", spriteBg: "#ffe999", text: "#000000" },
+        grass:   { card: "#82c368", spriteBg: "#cde7c3", text: "#000000" },
+        ice:     { card: "#a2e1ff", spriteBg: "#daf3ff", text: "#000000" },
+        fighting:{ card: "#a40a0a", spriteBg: "#db9d9d", text: "#ffffff" },
+        poison:  { card: "#b300ff", spriteBg: "#e199ff", text: "#ffffff" },
+        ground:  { card: "#be9780", spriteBg: "#e5d5cc", text: "#000000" },
+        flying:  { card: "#8dabfd", spriteBg: "#d1ddfe", text: "#000000" },
+        psychic: { card: "#dd00ff", spriteBg: "#f199ff", text: "#ffffff" },
+        bug:     { card: "#d9ee3a", spriteBg: "#f0f8b0", text: "#000000" },
+        rock:    { card: "#9e9088", spriteBg: "#d8d3cf", text: "#000000" },
+        ghost:   { card: "#3e1d73", spriteBg: "#b2a5c7", text: "#ffffff" },
+        dragon:  { card: "#696FC7", spriteBg: "#c3c5e9", text: "#ffffff" },
+        dark:    { card: "#30011b", spriteBg: "#ac99a4", text: "#ffffff" },
+        steel:   { card: "#c6c9eb", spriteBg: "#e8e9f7", text: "#000000" },
+        fairy:   { card: "#fd95b3", spriteBg: "#fed5e1", text: "#000000" }
+    };
 
-    // set background
-    let cardBackground; 
-    switch(types[0].toLowerCase()){
-        case "normal":
-            cardBackground = "#9F8383";
-            break;
+    const primaryColours = typeColours[types[0]] || "#ffffff";
 
-        case "fire":
-            cardBackground = "#EA2F14";
-            break;
+    //const spriteBackground = spriteBackgroundColour[types[0]] || "#ffffff80";
 
-        case "water":
-            cardBackground = "#4988C4";
-            break;
+    if (types.length > 1) {
+        const secondaryColours = typeColours[types[1]] || "#000000";
+        //const secondarySpriteColour = spriteBackgroundColour[types[1]] || "#ffffff80"
 
-        case "electric":
-            cardBackground = "#F3C623";
-            break;
-
-        case "grass":
-            cardBackground = "#8BAE66";
-            break;
-
-        case "ice":
-            cardBackground = "#BDDDE4";
-            break;
-
-        case "fighting":
-            cardBackground = "#9E3B3B";
-            break;
-
-        case "poison":
-            cardBackground = "#B300FF";
-            break;
-
-        case "ground":
-            cardBackground = "#C9B59C";
-            break;
-
-        case "flying":
-            cardBackground = "#8FBAF3";
-            break;
-
-        case "psychic":
-            cardBackground = "#B206B0";
-            break;
-
-        case "bug":
-            cardBackground = "#BBC863";
-            break;
-
-        case "rock":
-            cardBackground = "#B6AE9F";
-            break;
-
-        case "ghost":
-            cardBackground = "#574964";
-            break;
-
-        case "dragon":
-            cardBackground = "#696FC7";
-            break;
-
-        case "dark":
-            cardBackground = "#230013";
-            break;
-
-        case "steel":
-            cardBackground = "#C8CDFD";
-            break;
-
-        case "fairy":
-            cardBackground = "#FAA4BD";
-            break;
-
-        default:
-            cardBackground = "#FFFFFF";
+        return {
+            cardBackground: `linear-gradient(in oklab, ${primaryColours.card} 0 30%, ${secondaryColours.card} 70% 100%)`, //135 deg
+            spriteBackground: `linear-gradient(0deg, ${primaryColours.spriteBg}, ${secondaryColours.spriteBg})`, //315 deg 
+            textColour: secondaryColours.text
+        }
     }
-    return cardBackground;
+
+    return {
+        cardBackground: primaryColours.card,
+        spriteBackground: primaryColours.spriteBg,
+        textColour: primaryColours.text
+    }
+}
+
+// basic state for card
+let flippedCard = null;
+// flips cards 
+function flipCard(clickEvent) {
+    const clickedCard = clickEvent.currentTarget;
+
+    // flip back to front if already flipped
+    if (flippedCard === clickedCard) {
+        clickedCard.classList.remove("pokemonCard--flipped");
+        flippedCard = null;
+        return;
+    }
+
+    // this one doesnt work
+    // supposed to flip card back if another is clicked
+    if (flippedCard) {
+        console.log("supposed to flip if another gets flipped");
+        clickedCard.classList.remove("pokemonCard--flipped");
+    }
+
+    // flip a new card and add temporary class to it
+    clickedCard.classList.add("pokemonCard--flipped");
+    flippedCard = clickedCard;
 }

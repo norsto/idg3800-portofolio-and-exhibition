@@ -1,33 +1,37 @@
 $greenishCard: #3BC1A8;
 $buttonBackground: #BDE8F5;
-$shadow: #0F2854;
+$lightText: #f2f2ff;
+$transparentWhite: #ffffff80;
+
+//$shadow: #0e032f;
+$shadow: #0e032fcf;
 $pastelYellow: #FFDAB3;
 $ghostAlt: #43334C;
 $flyingAlt: #9FB3DF;
 
-$normalType: #9F8383;
-$grassType: #8BAE66;
-$fireType: #EA2F14;
-$waterType: #4988C4;
-$fightingType: #9E3B3B;
-$flyingType: #8FBAF3;
-$poisonType: #B300FF;
-$groundType: #C9B59C;
-$rockType: #B6AE9F;
-$bugType: #BBC863;
-$ghostType: #574964;
-$electricType: #F3C623;
-$psychicType: #B206B0;
-$iceType: #BDDDE4;
-$dragonType: #696FC7;
-$darkType: #230013;
-$steelType: #C8CDFD;
-$fairyType: #FAA4BD;
+$normalType: #d6b9b9;
+$grassType: #82c368;
+$fireType: #ea4214;
+$waterType: #176aee;
+$fightingType: #a40a0a;
+$flyingType: #8dabfd;
+$poisonType: #b300ff;
+$groundType: #be9780;
+$rockType: #9e9088;
+$bugType: #d9ee3a;
+$ghostType: #3e1d73;
+$electricType: #ffc800;
+$psychicType: #dd00ff;
+$iceType: #a2e1ff;
+$dragonType: #696fc7;
+$darkType: #30011b;
+$steelType: #c6c9eb;
+$fairyType: #fd95b3;
 
 
 * {
-  margin: 0;
-  box-sizing: border-box;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -37,48 +41,90 @@ body {
 h1,
 h2 {
     text-align: center;
+    margin-top: 5%;
+}
+
+h1 {
+    font-size: 4em;
+}
+
+h2 {
+    font-size: 3em;
 }
 
 #pullPokemon {
     display: block;
-    height: 3rem;
+    height: 3em;
     margin: 2vw auto;
     text-align: center;
-    border-color: $waterType;
+    border: 2px solid $waterType;
     background-color: $buttonBackground;
     border-radius: 0.5em;
-
+    //border-radius: 0.5em 1em;
+    font-size: 1.5em;
+    transition: 0.4s;
+    &:hover {
+        background-color: $waterType;
+        color: $lightText;
+        transform: scale(1.03, 1.03);
+    }
 }
 
 #yourPokedex {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-auto-rows: 2fr;
+    grid-gap: 1em 1em;
     width: 70%;    
     margin-left: auto;
     margin-right: auto;
 
     & .pokemonCard {
-        display: flex;
         background-color: $greenishCard;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 2rem;
-        width: 15vw;
-        height: 15vw;
-        align-items: center;
-        justify-content: center;
-        border-radius: 10px 30px;
-        transition: 0.3s;
-        &:hover {
+        margin: 1rem auto;
+        width: 15rem;
+        height: 18rem;
+        border-radius: 10px 40px;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: 0.6s ease; //0.3s for the previous hover
+        
+        &:hover:not(.pokemonCard--flipped) {
             transform: translate3d(-0.2em, -0.5em, 0);
-            box-shadow: 0.2em 0.5em 10px $waterType;
+            box-shadow: 0.2em 0.5em 10px $shadow;
         }
+
+        &__front,
+        &__back {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            backface-visibility: hidden;
+        }
+
+        &__front {
+            &--img {
+                height: 12rem;
+                width: 12rem;
+                background-color: $transparentWhite;
+                border-radius: 100%;
+            }
     
-        &__img {
-            height: 80%;
-            width: 80%;
-            background-color: $buttonBackground;
-            border-radius: 100%;
+            &--name {
+                color: black;
+                padding-left: 1em;
+                padding-right: 1em;
+                font-size: 2em;
+            }
+        }
+
+        &--flipped {
+            transform: perspective(30rem) rotateY(180deg) translate3d(-0.2em, -0.5em, 0);
+            box-shadow: -0.2em 0.5em 10px $shadow;
         }
     }
 }
