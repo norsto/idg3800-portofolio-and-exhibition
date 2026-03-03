@@ -67,8 +67,8 @@ function addPokemon(pokemonSpriteUrl, pokemonName, pokemonType, pokemonStats) {
     newPokemonName.style.color = cardColour.textColour;
     newPokemonCard.style.background = cardColour.cardBackground;
 
-    pokemonTypes.style.color = cardColour.textColour;
-    pokemonHp.style.color = cardColour.textColour;
+    // pokemonTypes.style.color = cardColour.textColour;
+    // pokemonHp.style.color = cardColour.textColour;
 
     // Putting the div into the already exsisting yourPokedex div
     yourPokedex.insertAdjacentElement("afterbegin", newPokemonCard); // beforeend
