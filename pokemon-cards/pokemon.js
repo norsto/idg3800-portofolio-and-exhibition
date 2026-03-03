@@ -7,7 +7,7 @@ const yourPokedex = document.querySelector("#yourPokedex");
 //let yourPokemon = []; not in use yet
 
 // Dynamically creates pokemon cards when a pokemon is pulled
-function addPokemon(pokemonSpriteUrl, pokemonName, pokemonType) {
+function addPokemon(pokemonSpriteUrl, pokemonName, pokemonType, pokemonStats) {
 
     const newPokemonCard = document.createElement("div");
     const newPokemonCardFront = document.createElement("div");
@@ -16,15 +16,21 @@ function addPokemon(pokemonSpriteUrl, pokemonName, pokemonType) {
     const newPokemon = document.createElement("img");
     const newPokemonName = document.createElement("p");
 
-    const newPokemonTypes = document.createElement("p");
+    const pokemonTypes = document.createElement("p");
+    const pokemonHp = document.createElement("p");
 
     newPokemon.src = pokemonSpriteUrl;
     newPokemon.alt = `Picture of ${pokemonName}`;
     newPokemonName.textContent = pokemonName;
 
-    newPokemonTypes.textContent = pokemonType;
+    // backside of card 
+    pokemonTypes.textContent = `Type: ${pokemonType.map(types => types.type.name).join(" and ")}`; 
+    pokemonHp.textContent = `HP: ${pokemonStats[0].base_stat}`;
 
     console.log(pokemonName);
+    console.log(pokemonType[0].type.name);
+    console.log(pokemonStats[0].base_stat);
+    //console.log(pokemonType[1].type.name);
 
     // Adding classes to the given element
     newPokemonCard.classList.add("pokemonCard");
@@ -34,33 +40,35 @@ function addPokemon(pokemonSpriteUrl, pokemonName, pokemonType) {
     newPokemon.classList.add("pokemonCard__front--img");
     newPokemonName.classList.add("pokemonCard__front--name");
 
-    newPokemonTypes.classList.add("pokemonCard__back--types");
+    pokemonTypes.classList.add("pokemonCard__back--types");
+    pokemonHp.classList.add("pokemonCard__back--hp");
 
 
-    // Putting the img and name into the new div
-    // newPokemonCard.appendChild(newPokemon);
-    // newPokemonCard.appendChild(newPokemonName);
-    newPokemonCard.addEventListener("click", flipCard);
     newPokemonCard.appendChild(newPokemonCardFront);
     newPokemonCard.appendChild(newPokemonCardBack);
 
+    // Putting the img and name into the new div
     newPokemonCardFront.appendChild(newPokemon);
     newPokemonCardFront.appendChild(newPokemonName);
 
-    newPokemonCardBack.appendChild(newPokemonTypes);
+    newPokemonCardBack.appendChild(pokemonTypes); 
+    newPokemonCardBack.appendChild(pokemonHp);
+
+    newPokemonCard.addEventListener("click", flipCard);
 
     console.log(newPokemon);
     console.log(newPokemonName);
-    console.log(newPokemonTypes);
+    console.log(pokemonTypes);
 
     // Calling the backgroundBasedOnType function to change card colour based on pokemon type
-    //let cardBackground = backgroundBasedOnType(pokemonType);
     let cardColour = backgroundBasedOnType(pokemonType);
-    //let spriteBackground = spriteBgBasedOnType(pokemonType);
-    //newPokemonCard.style.backgroundColor = cardBackground;
+
     newPokemon.style.background = cardColour.spriteBackground;
     newPokemonName.style.color = cardColour.textColour;
     newPokemonCard.style.background = cardColour.cardBackground;
+
+    pokemonTypes.style.color = cardColour.textColour;
+    pokemonHp.style.color = cardColour.textColour;
 
     // Putting the div into the already exsisting yourPokedex div
     yourPokedex.insertAdjacentElement("afterbegin", newPokemonCard); // beforeend
@@ -81,13 +89,14 @@ async function getRandomPokemon() {
         console.log(data);
 
         const spriteUrl = data.sprites.front_default;
-        const pokemonName = data.name;
+        const pokemonName = data.name.charAt(0).toUpperCase() + data.name.slice(1);
         const pokemonType = data.types;
+        const pokemonStats = data.stats;
         // const pokemonPrimaryType = data.types[0].type; // don't need to do this
         console.log(pokemonType);
 
         //Parameter get passed to addPokemon()
-        addPokemon(spriteUrl, pokemonName, pokemonType);
+        addPokemon(spriteUrl, pokemonName, pokemonType, pokemonStats);
     }
     catch(error){
         console.error(error);
@@ -156,12 +165,12 @@ function flipCard(clickEvent) {
         return;
     }
 
-    // this one doesnt work
-    // supposed to flip card back if another is clicked
-    if (flippedCard) {
-        console.log("supposed to flip if another gets flipped");
-        clickedCard.classList.remove("pokemonCard--flipped");
-    }
+    // loops through the cards to check if any are previously clicked
+    document.querySelectorAll(".pokemonCard.pokemonCard--flipped").forEach(card => {
+        if (card !== clickedCard) {
+            card.classList.remove("pokemonCard--flipped");
+        }
+    });
 
     // flip a new card and add temporary class to it
     clickedCard.classList.add("pokemonCard--flipped");

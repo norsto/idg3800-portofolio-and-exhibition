@@ -83,6 +83,21 @@ h2 {
   padding-right: 1em;
   font-size: 2em;
 }
+#yourPokedex .pokemonCard__back {
+  display: flex;
+  flex-direction: column;
+  transform: rotateY(180deg);
+}
+#yourPokedex .pokemonCard__back--types {
+  color: #30011b;
+  font-size: medium;
+}
+#yourPokedex .pokemonCard__back--hp {
+  padding-top: 0.5em;
+}
+#yourPokedex .pokemonCard__back--types, #yourPokedex .pokemonCard__back--hp {
+  font-size: 1.5em;
+}
 #yourPokedex .pokemonCard--flipped {
   transform: perspective(30rem) rotateY(180deg) translate3d(-0.2em, -0.5em, 0);
   box-shadow: -0.2em 0.5em 10px rgba(14, 3, 47, 0.8117647059);
