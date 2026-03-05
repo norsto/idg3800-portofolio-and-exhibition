@@ -176,5 +176,3 @@ function flipCard(clickEvent) {
     clickedCard.classList.add("pokemonCard--flipped");
     flippedCard = clickedCard;
 }
-
-//commiting
