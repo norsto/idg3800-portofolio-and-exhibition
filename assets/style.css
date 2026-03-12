@@ -7,19 +7,39 @@ body {
   background-color: #a4c9f5;
 }
 
+#nav ul {
+  display: flex;
+}
+#nav ul li {
+  padding-left: 20px;
+  list-style: none;
+}
+
 #whole-background {
   width: 100%;
   height: 100%;
 }
 
+#test :hover {
+  fill: hotpink;
+  background-color: hotpink;
+}
+
 .background {
   position: relative;
-  bottom: 0;
+  height: 200vh;
   width: 100%;
 }
-.background__images {
+.background__sky--images {
+  position: absolute;
+  top: 5%;
+  left: 0;
+  width: 100%;
+}
+.background__ground--images {
   position: absolute;
   left: 0;
+  bottom: 0vh;
   width: 100%;
   height: auto;
 }/*# sourceMappingURL=style.css.map */
