@@ -1,4 +1,15 @@
-$daylightSky: #a4c9f5;
+$night: #0d54d0;
+$dawn: #1c80e5;
+$sunrise: #ffde63;
+$morning: #a4c9f5;
+$afternoon: #89bbef;
+$evening: #70afef;
+$sunset: #ea5b6f;
+// $skyBlue: #8CA9FF; /* i really like these so i'll see if i can sneak them in*/
+// $afternoon: #799EFF; /* i really like these so i'll see if i can sneak them in*/
+// $clear: #FA5C5C;
+
+
 
 * {
     margin: 0;
@@ -6,7 +17,35 @@ $daylightSky: #a4c9f5;
 }
 
 body {
-    background-color: $daylightSky;
+    transition: background-color 10s ease-in-out;
+}
+
+.night {
+    background-color: $night;
+}
+
+.dawn {
+    background-color: $dawn;
+}
+
+.sunrise {
+    background: linear-gradient($morning, $sunrise);
+}
+
+.morning {
+    background-color: $morning;
+}
+
+.afternoon {
+    background-color: $afternoon;
+}
+
+.evening {
+    background: linear-gradient($afternoon, $evening);
+}
+
+.sunset {
+    background: linear-gradient($evening, $sunset);
 }
 
 #nav ul {

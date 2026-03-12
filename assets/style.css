@@ -4,7 +4,35 @@
 }
 
 body {
+  transition: background-color 10s ease-in-out;
+}
+
+.night {
+  background-color: #0d54d0;
+}
+
+.dawn {
+  background-color: #1c80e5;
+}
+
+.sunrise {
+  background: linear-gradient(#a4c9f5, #ffde63);
+}
+
+.morning {
   background-color: #a4c9f5;
+}
+
+.afternoon {
+  background-color: #89bbef;
+}
+
+.evening {
+  background: linear-gradient(#89bbef, #70afef);
+}
+
+.sunset {
+  background: linear-gradient(#70afef, #ea5b6f);
 }
 
 #nav ul {
