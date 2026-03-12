@@ -7,8 +7,9 @@
     <title>Portfolio front page</title>
 </head>
 <body>
+<header>
     <h1>Portfolio / Portefølje</h1>
-    <nav>
+    <nav id="nav">
         <ul>
             <li><a href="bachelor">Bachelor prosjekt, skal legges til senere</a></li>
             <li><a href="idg2100-2025-o1-gammel/index.html">Hesterace</a></li>
@@ -16,22 +17,31 @@
             <li><a href="pokemon-cards/pokedex.html">Pokemon Prosjekt</a></li>
         </ul>
     </nav>
-
+</header>
+<main>
     <!-- <svg width="100" height="100" xmlns="assets/skilt.svg">
         
     </svg> -->
     <div class="background">
-        <img class="background__images" src="img/idg3800-portfolio-background-bakke.svg" alt="bakke">
-        <img class="background__images" src="img/idg3800-portfolio-background-bakerste-fjell.svg" alt="bakerste fjell">
-        <img class="background__images" src="img/idg3800-portfolio-background-midtpunkts-fjell.svg" alt="midtpunktsfjell">
-        <img class="background__images" src="img/idg3800-portfolio-background-sti.svg" alt="sti">
-        <img class="background__images" src="img/idg3800-portfolio-background-midterste-fjell.svg" alt="midterste fjell">
-        <img class="background__images" src="img/idg3800-portfolio-background-skilt.svg" alt="veiskilt">
-        <img class="background__images" src="img/idg3800-portfolio-background-gress.svg" alt="gresstust">
-        <img class="background__images" src="img/idg3800-portfolio-background-nest-fremmerste-fjell-høyre.svg" alt="nest fremmerste fjell høyre">
-        <img class="background__images" src="img/idg3800-portfolio-background-fremmerste-fjell.svg" alt="fremmerste fjell">
+        <div class="background__sky">
+            <img class="background__sky--images" src="img/idg3800-portfolio-background-stor-sky.svg" alt="stor sky">
+            <img class="background__sky--images" src="img/idg3800-portfolio-background-liten-sky.svg" alt="liten sky">
+            <img class="background__sky--images" src="img/idg3800-portfolio-background-sky-medium.svg" alt="medium sky">
+        </div>
+        <div class="background__ground">
+            <img class="background__ground--images" src="img/idg3800-portfolio-background-bakke.svg" alt="bakke">
+            <img class="background__ground--images" src="img/idg3800-portfolio-background-bakerste-fjell.svg" alt="bakerste fjell">
+            <img class="background__ground--images" src="img/idg3800-portfolio-background-midtpunkts-fjell.svg" alt="midtpunktsfjell">
+            <img class="background__ground--images" src="img/idg3800-portfolio-background-sti.svg" alt="sti">
+            <img class="background__ground--images" src="img/idg3800-portfolio-background-midterste-fjell.svg" alt="midterste fjell">
+            <img class="background__ground--images" src="img/idg3800-portfolio-background-skilt.svg" alt="veiskilt">
+            <img class="background__ground--images" src="img/idg3800-portfolio-background-gress.svg" alt="gresstust">
+            <img class="background__ground--images" src="img/idg3800-portfolio-background-nest-fremmerste-fjell-høyre.svg" alt="nest fremmerste fjell høyre">
+            <img id="test" class="background__ground--images" src="img/idg3800-portfolio-background-fremmerste-fjell.svg" alt="fremmerste fjell">
+        </div>
     </div>
     <!-- <img id="whole-background" src="img/idg3800-portfolio-background-kopi.png" alt="hele bakgrunnen"> -->
+</main>
 
 </body>
 </html>

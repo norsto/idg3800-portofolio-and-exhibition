@@ -35,7 +35,36 @@ class DicePokerDie extends HTMLElement {
           color: var(--die-face-red);
         }
         
+        .holdDie {
+          width: 15vw;
+          height: 2.5rem;
+          min-width: 70px;
+          max-width: 100px;
+          min-height: 2rem;
+          border-radius: 5px;
+          margin-bottom: 1rem;
+          border: none;
+          transition: 0.5s;
+        }
 
+        .holdDie:hover {
+          background-color: var(--die-held-color);
+          transform: scale(1.2, 1.2);
+        }
+
+        .die {
+          display: flex;
+          background-color: var(--die-bg-color);
+          height: 15vw;
+          width: 15vw; 
+          max-height: 100px;
+          max-width: 100px;
+          border: 3px solid #F875AA; 
+          border-radius: 5px; 
+          justify-content: center;
+          align-items: center;
+          margin: 10%;
+        }
       </style>
   
       <div class="dieContainer">
@@ -49,26 +78,7 @@ class DicePokerDie extends HTMLElement {
   }
 
     /* eventually put back in style, check css document to get the updated version */
-        // .holdDie {
-        //   width: 100px;
-        //   height: 3rem;
-        //   border-radius: 5px;
-        //   margin-bottom: 1rem;
-        // }
 
-        // .die {
-        //   display: flex;
-        //   flex-wrap: wrap;
-        //   background-color: var(--die-bg-color);
-        //   height: 100px;
-        //   width: 100px;
-        //   border: 3px solid #F875AA; 
-        //   border-radius: 5px; 
-        //   justify-content: center;
-        //   align-items: center;
-        //   margin-left: 1em;
-        //   margin-right: 1em;
-        // }
 
   connectedCallback() {
     this.giveId();
