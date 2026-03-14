@@ -114,16 +114,6 @@ class DicePokerBoard extends HTMLElement {
     `;
   }
 
-        // #playerNames,
-        // #boardButtons,
-        // #gameSettings {
-        //   display: flex;
-        //   flex-wrap: wrap;
-        //   justify-content: center;
-        //   gap: 3rem;
-        //   align-items: center;
-        // } .....
-
   connectedCallback() {
 
     this.shadowRoot.querySelector("#startRound").addEventListener("click", ()=> {
