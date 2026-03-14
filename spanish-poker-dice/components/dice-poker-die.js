@@ -44,12 +44,12 @@ class DicePokerDie extends HTMLElement {
           border-radius: 5px;
           margin-bottom: 1rem;
           border: none;
-          transition: 0.5s;
+          transition: 0.4s;
         }
 
         .holdDie:hover {
           background-color: var(--die-held-color);
-          transform: scale(1.2, 1.2);
+          transform: scale(1.05, 1.05);
         }
 
         .die {
@@ -110,6 +110,7 @@ class DicePokerDie extends HTMLElement {
     this.shadowRoot.querySelectorAll(".dieFace")[0].innerHTML = DicePokerDie.dieFace[randomDieFace];
     const dieRolled = new CustomEvent("dp:die-rolled", {
       bubbles: true,
+      composed: true,
       detail: {
         dieId: this.getAttribute("die-id"),
         face: this.getAttribute("face"),
@@ -166,6 +167,7 @@ class DicePokerDie extends HTMLElement {
 
     const holdDie = new CustomEvent("dp:die-held-changed", {
       bubbles: true,
+      composed: true,
       detail: {
         dieId: this.getAttribute("die-id"),
         held: this.getAttribute("held"),

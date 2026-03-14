@@ -38,7 +38,8 @@ class DicePokerBoard extends HTMLElement {
 
         #flex {
           display: flex;
-          flex-wrap: wrap:
+          flex-wrap: wrap;
+          justify-content: center;
         }
         
         #bestOf,
@@ -56,6 +57,11 @@ class DicePokerBoard extends HTMLElement {
           border-radius: 5px;
           padding-left: 0.5em;
         }
+
+        .changePlayerName label {
+          height: 2.5rem;
+          background-color: var(--die-bg-color)
+        }
         
         button {
           width: 100px;
@@ -63,42 +69,47 @@ class DicePokerBoard extends HTMLElement {
           border-radius: 5px;
           margin-bottom: 1rem;
           border: none;
+          transition: 0.4s;
         }
 
         button:hover {
-          background-color: var(--die-bg-color);
+          background-color: var(--die-held-color);
+          transform: scale(1.05, 1.05);
         }
+
       </style>
-    <div id="flex">
-      <div id="playerNames">
-        <div class="changePlayerName">
-          <label for="player1Name">Player 1</label>
-          <input type="text" name="player1Name" id="player1Name" value="player1">
+  
+      <div id="flex">
+        <div id="playerNames">
+          <div class="changePlayerName">
+            <label for="player1Name">Player 1</label>
+            <input type="text" name="player1Name" id="player1Name" value="player1">
+          </div>
+          <div class="changePlayerName">
+            <label for="player2Name">Player 2</label>
+            <input type="text" name="player2Name" id="player2Name" value="player2">
+          </div>
         </div>
-        <div class="changePlayerName">
-          <label for="player2Name">Player 2</label>
-          <input type="text" name="player2Name" id="player2Name" value="player2">
+
+        <div id="gameSettings">
+          <select id="bestOf">
+            <option value="3">Best of 3</option>
+            <option value="5">Best of 5</option>
+            <option value="7">Best of 7</option>
+          </select>
+
+          <div id="checkboxContainer">
+            <input type="checkbox" id="include-straight" name="include-straight" value="true" checked>
+            <label for="include-straight">Include Straight</label>
+          </div>
         </div>
-      </div>  
-
-      <div id="gameSettings">
-        <select id="bestOf">
-          <option value="3">Best of 3</option>
-          <option value="5">Best of 5</option>
-          <option value="7">Best of 7</option>
-        </select>
-
-        <div id="checkboxContainer">
-          <input type="checkbox" id="include-straight" name="include-straight" value="true" checked>
-          <label for="include-straight">Include Straight</label>
+        
+        <div id="boardButtons"> 
+          <button id="startRound">Start round</button>
+          <button id="rollDice">Roll dice</button>
         </div>
       </div>
-      
-      <div id="boardButtons"> 
-        <button id="startRound">Start round</button>
-        <button id="rollDice">Roll dice</button>
-      </div>
-    </div>
+
       <slot></slot>
     `;
   }
@@ -198,6 +209,7 @@ class DicePokerBoard extends HTMLElement {
 
     const turnChanged = new CustomEvent("dp:turn-changed", {
       bubbles: true,
+      composed: true,
       detail: {
         player: this.player,
         remainingRolls: displayedRemainingRolls
@@ -397,6 +409,7 @@ class DicePokerBoard extends HTMLElement {
   roundEnded(winnerOfRound, winningDescription) {
     const roundDecided = new CustomEvent("dp:round-decided", {
       bubbles: true,
+      composed: true,
       detail: {
         winner: winnerOfRound,
         hands: {
@@ -437,6 +450,7 @@ class DicePokerBoard extends HTMLElement {
 
       const matchDecided = new CustomEvent("dp:match-decided", {
         bubbles: true,
+        composed: true,
         detail: {
           champion: winnerOfRound,
           scoreline: {
@@ -481,6 +495,7 @@ class DicePokerBoard extends HTMLElement {
 
       const rollExecuted = new CustomEvent("dp:roll-executed", {
         bubbles: true,
+        composed: true,
         detail: {
           player: this.player,
           faces: this.faces,
@@ -505,6 +520,7 @@ class DicePokerBoard extends HTMLElement {
 
     const startRound = new CustomEvent("dp:round-start", {
       bubbles: true,
+      composed: true,
       detail: {
         round: this.currentRound
       }
