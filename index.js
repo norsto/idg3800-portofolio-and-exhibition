@@ -1,7 +1,6 @@
 
 // The periods are based around late may times
 function applyTimeBasedBg() {
-    console.log("Script running");
     const currentDate = new Date();
     const convertToMinutes = currentDate.getHours() * 60 + currentDate.getMinutes();
     console.log(convertToMinutes);
@@ -11,8 +10,8 @@ function applyTimeBasedBg() {
         { name: "dawn", start: 3* 60, end: 4* 60}, // 03.00 - 04.00
         { name: "sunrise", start: 4 * 60, end: 4 * 60 + 30}, // 04.00 - 04.30
         { name: "morning", start: 4 * 60 + 30, end: 12 * 60}, // 04.30 - 12.00
-        { name: "afternoon", start: 12 * 60, end: 20 * 60}, // 12.00 - 21.00
-        { name: "evening", start: 20 * 60, end: 22 * 60 + 15}, // 21.00 - 22.15
+        { name: "afternoon", start: 12 * 60, end: 20 * 60}, // 12.00 - 20.00
+        { name: "evening", start: 20 * 60, end: 22 * 60 + 15}, // 20.00 - 22.15
         { name: "sunset", start: 22 * 60 + 15, end: 22 * 60 + 30} // 22.15 - 22.30
     ];
 

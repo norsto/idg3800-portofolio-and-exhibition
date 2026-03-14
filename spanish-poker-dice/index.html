@@ -71,34 +71,35 @@
         <hr>
 
 
-        <!-- Game Monitor (Status Bar) -->
-        <dice-poker-monitor>
-            <!-- Main Game Board -->
-            <dice-poker-board 
-                player1="Player 1" 
-                player2="Player 2" 
-                bestof="3"
-                include-straight="true">
+        <dice-poker-history>
+            <!-- Game Monitor (Status Bar) -->
+            <dice-poker-monitor>
+                <!-- Main Game Board -->
+                <dice-poker-board 
+                    player1="Player 1" 
+                    player2="Player 2" 
+                    bestof="3"
+                    include-straight="true">
 
-                <div class="dieHolder">
-                    <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
-                    <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
-                    <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
-                    <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
-                    <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
-                </div>
+                    <div class="dieHolder">
+                        <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
+                        <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
+                        <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
+                        <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
+                        <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
+                    </div>
 
 
-                <div class="dieHolder">
-                    <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
-                    <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
-                    <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
-                    <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
-                    <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
-                </div>
-            </dice-poker-board>
-        </dice-poker-monitor>
-
+                    <div class="dieHolder">
+                        <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
+                        <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
+                        <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
+                        <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
+                        <dice-poker-die face="" held="false" owner="" die-id=""></dice-poker-die>
+                    </div>
+                </dice-poker-board>
+            </dice-poker-monitor>
+        </dice-poker-history>
     </main>
 
     <footer>
@@ -109,5 +110,6 @@
     <script type="module" src="components/dice-poker-die.js"></script>
     <script type="module" src="components/dice-poker-board.js"></script>
     <script type="module" src="components/dice-poker-monitor.js"></script>
+    <script type="module" src="components/dice-poker-history.js"></script>
 </body>
 </html>
