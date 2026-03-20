@@ -15,14 +15,6 @@ function applyTimeBasedBg() {
         { name: "sunset", start: 22 * 60 + 15, end: 22 * 60 + 30} // 22.15 - 22.30
     ];
 
-    document.body.className = "";
-
-    // const current = periods.find(p => convertToMinutes >= p.start && convertToMinutes < p.end);
-
-    periods.forEach(p => {
-        console.log(p.name, p.start, p.end);
-    })
-
     const currentPeriod = periods.find(p => {
         if (p.end > p.start) {
             return convertToMinutes >= p.start && convertToMinutes < p.end;
@@ -31,10 +23,22 @@ function applyTimeBasedBg() {
         }
     });
 
-console.log("Total minutes:", convertToMinutes, "Current period:", currentPeriod?.name);
+    const background = document.querySelector(".background__ground");
+
+    document.body.className = "";
+    background.classList.remove(`${currentPeriod.name}--overlay`);
+
+    // const current = periods.find(p => convertToMinutes >= p.start && convertToMinutes < p.end);
+
+    periods.forEach(p => {
+        console.log(p.name, p.start, p.end);
+    });
+
+    console.log("Total minutes:", convertToMinutes, "Current period:", currentPeriod?.name);
 
     if (currentPeriod) {
         document.body.classList.add(currentPeriod.name);
+        background.classList.add(`${currentPeriod.name}--overlay`);
     }
 }
 
@@ -42,4 +46,5 @@ console.log("Total minutes:", convertToMinutes, "Current period:", currentPeriod
 applyTimeBasedBg();
 
 // Updates background automatically every 60 seconds
+// Make it 15 min or like 10 or maybe 60 seconds is good have to check
 setInterval(applyTimeBasedBg, 60000);
