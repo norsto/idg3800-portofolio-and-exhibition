@@ -15,6 +15,19 @@ function applyTimeBasedBg() {
         { name: "sunset", start: 22 * 60 + 15, end: 22 * 60 + 30} // 22.15 - 22.30
     ];
 
+    document.body.className = "";
+
+    const heading = document.querySelector(".about__heading--night");
+    if (heading) {
+        heading.classList.remove(".about__heading--night");
+        heading.classList.add(".about__heading");
+    }
+
+    document.querySelectorAll(".about__text--night").forEach(p => {
+        p.classList.remove(".about__text--night");
+        p.classList.add(".about__text");
+    });
+
     const currentPeriod = periods.find(p => {
         if (p.end > p.start) {
             return convertToMinutes >= p.start && convertToMinutes < p.end;
@@ -25,7 +38,6 @@ function applyTimeBasedBg() {
 
     // const background = document.querySelector(".background__ground");
 
-    document.body.className = "";
     // background.classList.remove(`${currentPeriod.name}--overlay`);
 
     // const current = periods.find(p => convertToMinutes >= p.start && convertToMinutes < p.end);
@@ -39,6 +51,17 @@ function applyTimeBasedBg() {
     if (currentPeriod) {
         document.body.classList.add(currentPeriod.name);
         // background.classList.add(`${currentPeriod.name}--overlay`);
+        
+        if (currentPeriod.name === "night") {
+            const heading = document.querySelector(".about__heading");
+            heading.classList.remove("about__heading");
+            heading.classList.add("about__heading--night");
+            
+            document.querySelectorAll(".about__text").forEach(p => {
+                p.classList.remove("about__text");
+                p.classList.add("about__text--night");
+            });
+        }
     }
 }
 

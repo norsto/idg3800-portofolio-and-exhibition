@@ -60,6 +60,11 @@ body {
   text-align: center;
   margin-bottom: 24px;
 }
+.about__heading--night {
+  text-align: center;
+  margin-bottom: 24px;
+  color: aliceblue;
+}
 .about__flex {
   display: flex;
   gap: 40px;
@@ -73,6 +78,11 @@ body {
 .about__text {
   line-height: 1.6;
   margin-bottom: 16px;
+}
+.about__text--night {
+  line-height: 1.6;
+  margin-bottom: 16px;
+  color: aliceblue;
 }
 .about__text:last-child {
   margin-bottom: 0;
