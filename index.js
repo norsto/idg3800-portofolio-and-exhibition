@@ -23,10 +23,10 @@ function applyTimeBasedBg() {
         }
     });
 
-    const background = document.querySelector(".background__ground");
+    // const background = document.querySelector(".background__ground");
 
     document.body.className = "";
-    background.classList.remove(`${currentPeriod.name}--overlay`);
+    // background.classList.remove(`${currentPeriod.name}--overlay`);
 
     // const current = periods.find(p => convertToMinutes >= p.start && convertToMinutes < p.end);
 
@@ -38,7 +38,7 @@ function applyTimeBasedBg() {
 
     if (currentPeriod) {
         document.body.classList.add(currentPeriod.name);
-        background.classList.add(`${currentPeriod.name}--overlay`);
+        // background.classList.add(`${currentPeriod.name}--overlay`);
     }
 }
 
