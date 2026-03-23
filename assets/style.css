@@ -111,6 +111,7 @@ body {
   width: 100%;
   height: auto;
   border-radius: 150px 150px 5px 5px;
+  filter: saturate(120%);
 }
 
 .projects {
