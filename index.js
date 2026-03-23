@@ -19,14 +19,20 @@ function applyTimeBasedBg() {
 
     const heading = document.querySelector(".about__heading--night");
     if (heading) {
-        heading.classList.remove(".about__heading--night");
-        heading.classList.add(".about__heading");
+        heading.classList.remove("about__heading--night");
+        heading.classList.add("about__heading");
     }
 
     document.querySelectorAll(".about__text--night").forEach(p => {
-        p.classList.remove(".about__text--night");
-        p.classList.add(".about__text");
+        p.classList.remove("about__text--night");
+        p.classList.add("about__text");
     });
+
+    const projectsHeading = document.querySelector(".projects__heading--night");
+    if (projectsHeading) {
+        projectsHeading.classList.remove("projects__heading--night");
+        projectsHeading.classList.add("projects__heading");
+    }
 
     const currentPeriod = periods.find(p => {
         if (p.end > p.start) {
@@ -61,6 +67,10 @@ function applyTimeBasedBg() {
                 p.classList.remove("about__text");
                 p.classList.add("about__text--night");
             });
+
+            const projectsHeading = document.querySelector(".projects__heading");
+            projectsHeading.classList.remove("projects__heading");
+            projectsHeading.classList.add("projects__heading--night");
         }
     }
 }
