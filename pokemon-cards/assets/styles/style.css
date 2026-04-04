@@ -3,8 +3,8 @@
   box-sizing: border-box;
 }
 
-body {
-  background-color: whitesmoke;
+#body {
+  background: whitesmoke;
 }
 
 h1,
@@ -66,15 +66,18 @@ h2 {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  justify-self: center;
   position: absolute;
+  backface-visibility: hidden;
+}
+#yourPokedex .pokemonCard__front {
   height: 100%;
   width: 100%;
-  backface-visibility: hidden;
 }
 #yourPokedex .pokemonCard__front--img {
   height: 12rem;
   width: 12rem;
-  background-color: rgba(255, 255, 255, 0.5019607843);
+  background-color: rgba(255, 255, 255, 0.7490196078);
   border-radius: 100%;
 }
 #yourPokedex .pokemonCard__front--name {
@@ -84,8 +87,13 @@ h2 {
   font-size: 2em;
 }
 #yourPokedex .pokemonCard__back {
-  display: flex;
-  flex-direction: column;
+  border-radius: 30px;
+  height: 90%;
+  width: 90%;
+  margin: 1em;
+  padding: 1em;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.7490196078);
   transform: rotateY(180deg);
 }
 #yourPokedex .pokemonCard__back--types {

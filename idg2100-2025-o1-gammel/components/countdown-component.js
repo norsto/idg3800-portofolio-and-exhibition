@@ -93,6 +93,15 @@ export default class CountdownTimer extends HTMLElement {
             #resetButton {
                 background-color: var(--resetButton-color);
             }
+
+            button {
+                width: 5rem;
+                transition: 0.5s;
+            }
+
+            button:hover {
+            transform: scale(1.1, 1.1);
+            }
         </style>
         <div>
             <button id="startButton">start</button>

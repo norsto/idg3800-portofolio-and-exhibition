@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="index.js" defer></script>
+    <title>Portfolio front page</title>
+</head>
+<body>
+<header class="header">
+    <h1 class="header__title">Portfolio / Portefølje</h1>
+    <nav class="header__nav">
+        <ul class="header__nav-list">
+            <li class="header__nav-item">
+                <a class="header__nav-link" href="bachelor">Bachelor prosjekt, skal legges til senere</a>
+            </li>
+            <li class="header__nav-item">
+                <a class="header__nav-link" href="idg2100-2025-o1-gammel/index.html">Hesterace</a>
+            </li>
+            <li class="header__nav-item">
+                <a class="header__nav-link" href="spanish-poker-dice/index.html">Spanish poker dice game</a>
+            </li>
+            <li class="header__nav-item">
+                <a class="header__nav-link" href="pokemon-cards/pokedex.html">Pokemon Prosjekt</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+    <section class="about">
+        <h2 class="about__heading">Om meg</h2>
+        <div class="about__flex">
+            <div class="about__description">
+                <p class="about__text">
+                    Jeg heter Nora, er 24 år og kommer fra ei lita bygd som heter Budal i Trøndelag og har studert webutvikling de siste 3 årene ved NTNU i Gjøvik.
+                    Jeg valgte webutvikling fordi jeg syntes det virket interessant og var nysgjerrig på hvordan man lager nettsider.
+                </p>
+                <p class="about__text">
+                    I løpet av studiet har jeg jobbet med HTML, CSS, JavaScript, PHP, MySQL, Python, React, Node.js og MongoDB.
+                    Favoritten er front-end med JavaScript, CSS og HTML.
+                    Med de kan jeg lage interaktive og visuelt spennende nettsider.
+                    Jeg liker å lage spill eller spill-lignende prosjekter.
+                </p>
+                <p class="about__text">
+                    Fra tidligere skolegang, nåværende studie og fritid har jeg bakgrunn i Photoshop, og jeg liker å tegne både fysisk og digitalt.
+                    Jeg er også glad i fjellturer.
+                </p>
+                <p class="about__text">
+                    Selv om jeg foretrekker front-end, liker jeg også prosessen i fullstack.
+                    Det er gøy når man bygger en hel applikasjon og får de ulike delene til å funke som de skal.
+                    Jeg liker å lage tester for koden for å se om alt sendes og blir tatt imot som det skal.
+                </p>
+            </div>
+            <figure class="about__figure">
+                <img class="about__img" src="assets/img/pic-of-me.jpg" alt="bilde av meg">
+            </figure>
+        </div>
+    </section>
+
+    <section class="projects">
+        <h2 class="projects__heading">Prosjekter</h2>
+
+        <div class="projects__grid">
+            <article class="card">
+                <div class="card__info">
+                    <h3 class="card__title">Bachelor Prosjekt</h3>
+                    <p class="card__description">
+                        Bacheloroppgaven vi skriver i samarbeid med HDO (helsetjenestens driftsorganisasjon for nødnett) går ut på å besvare problemstillingen 
+                        "Hvordan kan et Dashboard med sanntidsstatistikk og prognoser forbedre ressursstyring og situasjonsbevissthet ved AMK-sentraler?". 
+                        Vi har gjennomført intervjuer med aktuelle folk og laget en prototype for produktet.
+                    </p>
+                    <p class="card__description">
+                        IDG3920 Bacheloroppgave BWU, 5. og 6. semester.
+                    </p>
+                    <div class="card__links">
+                        <a class="card__link" href="" target="_blank">Hanna Samborska</a>
+                        <a class="card__link" href="" target="_blank">Fredrik Johan Eide</a>
+                    </div>
+                </div>
+                <div class="card__thumbnail">
+                    <img class="card__image" src="assets/img/bachelor-placeholder.png" alt="Bachelor Prosjekt">
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card__info">
+                    <h3 class="card__title">Spanish Poker Dice</h3>
+                    <p class="card__description">
+                        Spanish Poker Dice er nesten som vanlig poker, bortsett fra at du har terninger i stedet for kort!
+                        Sidene på terningene fra høyeste til laveste er A, K, Q, J, 8 og 7.
+                        Terningene rulles 3 ganger hver, og deretter får man scoren sin.
+                        Rangeringen av scoren fra høy til lav er Repóker (5 like), Póker (4 like), Full (Hus, 3 like + 2 like),
+                        Escalera (Straight/Trapp), Trío (3 like), Double Pareja (2 par), Pareja (ett par) og
+                        Carta Alta (det høyeste kortet du har).
+                        Skriv inn navnet ditt, velg selv om du vil ha best av 3, 5, eller 7 og om du vil inkludere straight.
+                        Dersom du vinner, blir navnet du valgte lagret i vinnerhistorikken.
+                    </p>
+                    <p><a href="spanish-poker-dice/index.html">Prøv prosjektet her</a></p>
+                    <p class="card__description">
+                        IDG2100 Fullstack, 6. semester.
+                    </p>
+                </div>
+                <div class="card__thumbnail">
+                    <img class="card__image" src="assets/img/spanish-poker-dice-placeholder.png" alt="Spanish Poker Dice">
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card__info">
+                    <h3 class="card__title">Hesterace</h3>
+                    <p class="card__description">
+                        I spillet Horse Racing Game er det meningen å være den første til å komme seg over målstreken.
+                        Trykk på den gitte tastaturknappen så fort som du kan for å vinne hesteveddeløpet!
+                        Du kan navngi hesten, og om du vinner, vises det valgte navnet i vinnerhistorikken.
+                        Premien er hovedsakelig heder og ære, men du og dine medspillere kan finne ut av andre priser dersom det er ønsket.
+                    </p>
+                    <p><a href="idg2100-2025-o1-gammel/index.html">Prøv prosjektet her</a></p>
+                    <p class="card__description">
+                        IDG2100 Fullstack, 4. semester.
+                    </p>
+                </div>
+                <div class="card__thumbnail">
+                    <img class="card__image" src="assets/img/hesterace-placeholder.png" alt="Hesterace">
+                </div>
+            </article>
+
+            <!-- <article class="card">
+                <div class="card__info">
+                    <h3 class="card__title">Personlig prosjekt: Pokemonkort</h3>
+                </div>
+                <div class="card__thumbnail">
+                    <img class="card__image" src="assets/img/idg3800-portfolio-background-kopi.png" alt="Pokemon Kort">
+                </div>
+            </article> -->
+        </div>
+    </section>
+</main>
+</body>
+<footer>
+
+</footer>
+</html>

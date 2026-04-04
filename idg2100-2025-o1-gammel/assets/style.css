@@ -6,6 +6,6 @@
     --resetButton-color: #FFD65A;
 }
 
-body {
-    background-color: whitesmoke;
+#body {
+    background: whitesmoke;
 }

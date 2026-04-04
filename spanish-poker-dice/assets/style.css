@@ -1,0 +1,113 @@
+/* 
+  Spanish Dice Poker - Component Styling
+  
+  This file is for styling your Web Components and custom design.
+  
+  IMPORTANT:
+  - layout.css contains only the main page layout (header, main, footer, intro section)
+  - Use THIS file (style.css) to style your game components and create your theme:
+    * dice-poker-board
+    * dice-poker-die
+    * dice-poker-monitor
+    * Buttons, game board, dice, player sections, etc.
+  
+  REQUIREMENTS:
+  - Use CSS custom properties (CSS variables) for theming
+  - Ensure all components are responsive (mobile, tablet, desktop)
+  Start adding your styles below:
+*/
+
+:root {
+  --board-bg-color: #A5C89E;
+  --die-bg-color: #FDEDED;
+  --die-face-red: #8C1007;
+  --die-face-black: #000;
+  --die-held-color: #F875AA;    /* Highlight when held */
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* dice css */
+.dieHolder {
+  /* display: flex;
+  flex-wrap: wrap; */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, auto));
+  /* grid-template-columns: 20% 20% 20% 20% 20%; */
+  grid-auto-rows: 1fr;
+  grid-gap: 1em 1em;
+  justify-content: center;
+  margin: 1%;
+}
+
+.holdDie {
+  width: 15vw; /* originally 100 px*/
+  height: 2.5rem;
+  min-width: 70px;
+  max-width: 100px;
+  min-height: 2rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  border: none;
+  /* background-color: var(--die-bg-color); */
+  transition: 0.5s;
+}
+
+.holdDie:hover {
+  background-color: var(--die-held-color);
+  /* color: $lightText; */
+  transform: scale(1.2, 1.2);
+
+}
+
+.die {
+  display: flex;
+  /* flex-wrap: wrap; */
+  background-color: var(--die-bg-color);
+  /* height: 6rem;
+  width: 6rem; */
+  height: 15vw;
+  width: 15vw; /* originally 100px */
+  max-height: 100px;
+  max-width: 100px;
+  border: 3px solid #F875AA; 
+  border-radius: 5px; 
+  justify-content: center;
+  align-items: center;
+  /* margin-left: 1em;
+  margin-right: 1em; */
+  margin: 10%;
+}
+
+
+/* Boards css */
+#checkboxContainer {
+  display: flex;
+}
+
+#checkboxContainer label {
+  margin-left: 0.5em;
+  background-color: var(--die-bg-color);
+}
+
+#include-straight {
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 10px;
+}
+
+dice-poker-board {
+  height: 50%;
+  width: 90%;
+  background-color: var(--board-bg-color);
+  border-radius: 1em;
+  margin: 1em;
+  padding: 1em;
+}
+
+#body {
+  background: #f5f5f5;
+}
