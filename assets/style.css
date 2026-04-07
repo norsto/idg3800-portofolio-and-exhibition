@@ -10,6 +10,7 @@ body {
 }
 
 .night {
+  background: linear-gradient(215deg, #155fbb 90%, #5ea8e0, aliceblue);
   background: #155fbb;
 }
 
@@ -26,7 +27,7 @@ body {
 }
 
 .sunrise {
-  background: linear-gradient(#a9caff, #ffdf66);
+  background: linear-gradient(#a9caff 30%, #ebb9ff, #ffdf66, #FFCF1A);
 }
 
 .evening {
@@ -34,7 +35,7 @@ body {
 }
 
 .sunset {
-  background: linear-gradient(#6ba6ff, #ff6a98);
+  background: linear-gradient(#6ba6ff, #ef75c0, #ff6a98);
 }
 
 .header {
@@ -111,6 +112,7 @@ body {
   width: 100%;
   height: auto;
   border-radius: 150px 150px 5px 5px;
+  filter: saturate(120%);
 }
 
 .projects {

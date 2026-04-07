@@ -6,7 +6,7 @@ function applyTimeBasedBg() {
     console.log(convertToMinutes);
 
     const periods = [
-        { name: "night", start: 22 * 60 + 30, end: 3 * 60}, // 22.30 - 03.00
+        { name: "night", start: 22* 60 + 30, end: 3 * 60}, // 22.30 - 03.00
         { name: "dawn", start: 3* 60, end: 4* 60}, // 03.00 - 04.00
         { name: "sunrise", start: 4 * 60, end: 4 * 60 + 30}, // 04.00 - 04.30
         { name: "morning", start: 4 * 60 + 30, end: 12 * 60}, // 04.30 - 12.00
@@ -74,6 +74,8 @@ function applyTimeBasedBg() {
         }
     }
 }
+
+// adding twinkling stars would be fun
 
 // Calls to change background when page is rendered
 applyTimeBasedBg();
