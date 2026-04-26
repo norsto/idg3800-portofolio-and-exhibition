@@ -5,37 +5,40 @@
 }
 
 body {
-  transition: background-color 10s ease-in-out;
   background: #8eb9ff;
 }
 
 .night {
-  background: linear-gradient(215deg, #155fbb 90%, #5ea8e0, aliceblue);
-  background: #155fbb;
+  background: linear-gradient(#001354, #052877, #003e9c);
+  color: white;
 }
 
 .dawn {
-  background: #3882db;
+  background: linear-gradient(#003e9c 5%, #2563cd, #3d8bff 60% 80%, #ffa2d0, #ffe896);
 }
 
 .morning {
-  background: #a9caff;
+  background: linear-gradient(#a9caff, #8eb9ff);
 }
 
 .afternoon {
-  background: #8eb9ff;
-}
-
-.sunrise {
-  background: linear-gradient(#a9caff 30%, #ebb9ff, #ffdf66, #FFCF1A);
-}
-
-.evening {
   background: linear-gradient(#8eb9ff, #6ba6ff);
 }
 
+.sunrise {
+  background: linear-gradient(#6ba6ff, #a9caff, #ebb9ff, #ffa2d0, #ffdf66, #FFCF1A);
+}
+
+.evening {
+  background: linear-gradient(#1562d7 60%, #3d8bff, #6ba6ff, #ffe896, #ff7674);
+}
+
+.golden {
+  background: linear-gradient(#6ba6ff 0.2em, #ffe896, #fdd976, #FFCF1A, #ffa600, #ff8a46);
+}
+
 .sunset {
-  background: linear-gradient(#6ba6ff, #ef75c0, #ff6a98);
+  background: linear-gradient(#6ba6ff 10%, #ef75c0, #ff6a98, #FF437D);
 }
 
 .header {
