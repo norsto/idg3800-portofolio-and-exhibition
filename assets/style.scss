@@ -10,19 +10,53 @@
 // $afternoon: #799EFF;
 // $clear: #FA5C5C;
 
-$night: #155fbb;
-$dawn: #3882db;
+$night: #003e9c;
+$dawn: #3d8bff;
 $sunrise: #ffdf66;
 $deepSunrise: #FFCF1A;
 $morning: #a9caff;
 $afternoon: #8eb9ff;
 $evening: #6ba6ff; 
+$golden: #ffa600;
 $sunset: #ff6a98;
-$sunsetTest: #ef75c0;
 
-$test: #ebb9ff;
-$test2: #ffa2d0;
+$deepNight: #001354;
 
+$nightTransition: #052877;
+
+$twilight: #2563cd;
+
+$deepSunset: #FF437D;
+
+$lightMorning: #c9deff;
+$lightGolden: #ffe896;
+
+$goldenTransition: #fdd976;
+
+$deepGolden: #ff8a46;
+
+$eveningLight: #ff7674;
+
+$deepEvening: #1562d7;
+
+$sunsetTransition: #ef75c0;
+$sunsetTransition2: #d078dc;
+
+$sunriseTransition: #ebb9ff;
+$sunriseTransition2: #ffa2d0;
+
+    // if (degrees < -18) return "night";
+
+    // if (isRising) {
+    //     if (degrees < -12) return "dawn"; done
+    //     else if (degrees < -6) return "sunrise"; done
+    //     else return "morning"; done
+    // } else {
+    //     if (degrees > 6) return "afternoon"; done
+    //     else if (degrees > 0) return "golden"; done
+    //     else if (degrees > -6) return "sunset"; done
+    //     else if (degrees > -12) return "evening"; done
+    //     else return "night"; done
 
 * {
     margin: 0;
@@ -31,7 +65,7 @@ $test2: #ffa2d0;
 }
 
 body {
-    transition: background-color 10s ease-in-out;
+    // transition: background-color 10s ease-in-out;
     background: $afternoon;
     // background-color: $sunset;
     // background: linear-gradient($evening, $sunset);
@@ -39,16 +73,17 @@ body {
 }
 
 .night { 
-    background: linear-gradient(215deg, $night 90%, #5ea8e0, aliceblue); 
-    background: $night;
-}
-.dawn { background: $dawn; }
-.morning { background: $morning; }
-.afternoon { background: $afternoon; }
+    background: linear-gradient($deepNight, $nightTransition, $night); 
+    color: white;
+} // done
+.dawn { background: linear-gradient($night 5%, $twilight, $dawn 60% 80%, $sunriseTransition2, $lightGolden);} //done
+.morning { background: linear-gradient($morning, $afternoon);} // done
+.afternoon { background: linear-gradient($afternoon, $evening);} // done
 
-.sunrise { background: linear-gradient($morning 30%, $test, $sunrise, $deepSunrise); }
-.evening { background: linear-gradient($afternoon, $evening); }
-.sunset { background: linear-gradient($evening, $sunsetTest, $sunset); }
+.sunrise { background: linear-gradient($evening, $morning, $sunriseTransition, $sunriseTransition2, $sunrise, $deepSunrise); } // done
+.evening { background: linear-gradient($deepEvening 60%, $dawn, $evening, $lightGolden, $eveningLight);} //done
+.golden { background: linear-gradient($evening 0.2em, $lightGolden, $goldenTransition, $deepSunrise, $golden, $deepGolden); } // done
+.sunset { background: linear-gradient($evening 10%, $sunsetTransition, $sunset, $deepSunset); } // done
 
 .header {
     padding: 24px 24px 16px;
