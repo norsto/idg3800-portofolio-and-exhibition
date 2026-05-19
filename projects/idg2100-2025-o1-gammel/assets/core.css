@@ -1,67 +1,50 @@
 /* Starter layout by Geoff Graham
 https://codepen.io/geoffgraham/pen/jaqWMJ
-with several modifications*/
-
-/* ++++++ IMPORTANT ++++++ */
-/* This is only a starter code for the main layout. 
-You can modify the layout to create your own theme.
-Make sure the new layout is responsive.
-Use this file to create only the main layout and modify the fonts, headings and sizes.
-*/
-/* end IMPORTANT +++++++++ */
+with several modifications */
 
 body {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: minmax(5vw, max-content) minmax(30vw, max-content) minmax(5vw, max-content);
     grid-gap: 1em;
     margin: auto;
     max-width: 1680px;
-    padding: 1em 0;
+    padding: 1em;
     font-family: "Montserrat", "open sans", sans-serif;
     line-height: 1.7;
 }
 
-body>* {
+/* Direct children of body get padding */
+body > * {
     padding: 1rem;
 }
 
-header,
+/* Shared styles for top-level layout elements */
+.game-intro,
+.game-track,
+aside,
+footer {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
 main,
 aside,
 footer {
-    background: #eaeaea;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid grey;
 }
 
-header>* {
-    max-width: 72ch;
-}
-
-main {
-    flex-direction: column;
-}
-
-header,
-footer {
+/* Site header spans full width */
+.site-header {
     grid-column: 1 / span 6;
 }
 
+/* Main spans 4 columns, aside spans 2 */
 main {
     grid-column: 1 / span 4;
-    background: lightsteelblue;
-}
-
-.card-container {
-    max-width: 700px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: .5em;
-    justify-content: center;
+    gap: 1.5rem;
 }
 
 aside {
@@ -69,13 +52,37 @@ aside {
     background: lightgreen;
 }
 
-header,
 footer {
-    min-height: 10vw;
+    grid-column: 1 / span 6;
+    min-height: 5vw;
+    background-color: rgb(231, 225, 255);
+}
+
+/* Sections inside main */
+.game-intro,
+.game-track {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.game-intro {
+    background-color: #c1e2ff;
+}
+
+.game-track {
+    background-color: rgb(255, 239, 247);
+}
+
+.game-intro > * {
+    max-width: 72ch;
 }
 
 @media (max-width: 1200px) {
-
     body {
         max-width: 95vw;
     }

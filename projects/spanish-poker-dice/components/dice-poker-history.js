@@ -5,6 +5,8 @@ class DicePokerHistory extends HTMLElement {
         this.attachShadow({ mode: "open" });
 
         this.storageKey = "DP_HISTORY";
+        this.maxRounds = 6;
+        this.maxMatches = 6;
         this.history = [];
 
         this.shadowRoot.innerHTML = `
@@ -82,6 +84,14 @@ class DicePokerHistory extends HTMLElement {
         };
 
         this.history.push(entry);
+
+        // Keep only the last maxRounds rounds, remove oldest if over limit
+        const rounds = this.history.filter(e => e.type === "round");
+        if (rounds.length > this.maxRounds) {
+            const firstRoundIndex = this.history.findIndex(e => e.type === "round");
+            this.history.splice(firstRoundIndex, 1);
+        }
+
         this.saveHistory();
         this.render();
     }
@@ -95,6 +105,14 @@ class DicePokerHistory extends HTMLElement {
         };
 
         this.history.push(entry);
+
+        // Keep only the last maxMatches matches, remove oldest if over limit
+        const matches = this.history.filter(e => e.type === "match");
+        if (matches.length > this.maxMatches) {
+            const firstMatchIndex = this.history.findIndex(e => e.type === "match");
+            this.history.splice(firstMatchIndex, 1);
+        }
+
         this.saveHistory();
         this.render();
     }
@@ -103,27 +121,26 @@ class DicePokerHistory extends HTMLElement {
         const roundList = this.shadowRoot.querySelector("#roundList");
         const matchList = this.shadowRoot.querySelector("#matchList");
 
-        const rounds = this.history.filter(e => e.type === "round")
+        const rounds = this.history
+            .filter(e => e.type === "round")
             .slice()
             .reverse()
             .map(entry => {
                 const date = new Date(entry.timestamp).toLocaleString();
-
-                if (entry.type === "round") {
-                    return `
-                        <li>
-                            <p><strong>Round</strong> (${date})</p>
-                            <p>Winner: ${entry.winner}</p>
-                            <p>P1: ${entry.hands.player1.handType}</p>
-                            <p>P2: ${entry.hands.player2.handType}</p>
-                        </li>
-                    `;
-                }
+                return `
+                    <li>
+                        <p><strong>Round</strong> (${date})</p>
+                        <p>Winner: ${entry.winner}</p>
+                        <p>P1: ${entry.hands.player1.handType}</p>
+                        <p>P2: ${entry.hands.player2.handType}</p>
+                    </li>
+                `;
             })
             .join("");
         roundList.innerHTML = rounds;
 
-        const matches = this.history.filter(e => e.type === "match")
+        const matches = this.history
+            .filter(e => e.type === "match")
             .slice()
             .reverse()
             .map(entry => {

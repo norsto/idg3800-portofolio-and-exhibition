@@ -1,100 +1,179 @@
 export default class RaceTrack extends HTMLElement {
     constructor() {
-        super(); 
+        super();
         this.attachShadow({ mode: "open" });
         this.shadowRoot.innerHTML = this.racetrackTemplate();
-
-        // Used to store <race-horse> elements inside the <race-track> element
+ 
         this.horses = [];
-        // Makes sure the race doesn't start as soon as the component is loaded in
         this.isRacing = false;
-
-        // Listens to the countdown component
-        document.addEventListener("race-start", () => this.startRace());
-        document.addEventListener("race-reset", () => this.resetRace());
-        // Listens to the racehorse component (the horse positions)
-        document.addEventListener("update-racehorse-position", (event) => this.declareWinner(event.detail.name, event.detail.position));
+        this.winnerDeclared = false;
+        this.validationError = null;
+        this.displayWinner = null;
+ 
+        this._onRaceStart = () => this.startRace();
+        this._onRaceReset = () => this.resetRace();
+        this._onHorseMove = (event) => this.checkWinner(event.detail.name, event.detail.position);
+        this._onKeyUp = (event) => this.handleKeyPress(event);
     }
-
-    // Collects all the <race-horse> elements inside the <race-track> element
+ 
     connectedCallback() {
+        // Cache shadow DOM references here, after the element is in the document
+        this.validationError = this.shadowRoot.querySelector("#validationError");
+        this.displayWinner = this.shadowRoot.querySelector("#displayWinner");
+        this.addHorseButton = this.shadowRoot.querySelector("#addHorse");
+        this.removeHorseButton = this.shadowRoot.querySelector("#removeHorse");
+ 
+        this.addHorseButton.addEventListener("click", () => this.addHorse());
+        this.removeHorseButton.addEventListener("click", () => this.removeHorse());
+ 
+        setTimeout(() => {
+            this.horses = Array.from(this.querySelectorAll("race-horse"));
+            this.updateButtons();
+        }, 0);
+ 
+        document.addEventListener("race-start", this._onRaceStart);
+        document.addEventListener("race-reset", this._onRaceReset);
+        document.addEventListener("update-racehorse-position", this._onHorseMove);
+    }
+ 
+    disconnectedCallback() {
+        document.removeEventListener("race-start", this._onRaceStart);
+        document.removeEventListener("race-reset", this._onRaceReset);
+        document.removeEventListener("update-racehorse-position", this._onHorseMove);
+        document.removeEventListener("keyup", this._onKeyUp);
+    }
+ 
+    isKeyTaken(key, requester) {
+        return this.horses.some(horse => {
+            return horse !== requester && horse.horseKey === key.toUpperCase();
+        });
+    }
+ 
+    isNameTaken(name, requester) {
+        return this.horses.some(horse => {
+            return horse !== requester && horse.horseName.toLowerCase() === name.toLowerCase();
+        });
+    }
+ 
+    allHorsesValid() {
+        return this.horses.every(horse => horse.isValid());
+    }
+ 
+    canStart() {
+        if (!this.allHorsesValid()) {
+            this.validationError.textContent = "All horses must have a unique name and key before starting.";
+            return false;
+        }
+        this.validationError.textContent = "";
+        return true;
+    }
+ 
+    addHorse() {
+        if (this.horses.length >= 5) return;
+ 
+        const horse = document.createElement("race-horse");
+        horse.setAttribute("name", "");
+        horse.setAttribute("key", "");
+        this.appendChild(horse);
+ 
         this.horses = Array.from(this.querySelectorAll("race-horse"));
+        this.updateButtons();
     }
-
-    // Starts the race
+ 
+    removeHorse() {
+        if (this.horses.length <= 2) return;
+ 
+        const lastHorse = this.horses[this.horses.length - 1];
+        this.removeChild(lastHorse);
+ 
+        this.horses = Array.from(this.querySelectorAll("race-horse"));
+        this.updateButtons();
+    }
+ 
+    updateButtons() {
+        const count = this.horses.length;
+ 
+        this.addHorseButton.disabled = count >= 5;
+        this.addHorseButton.textContent = count >= 5
+            ? "Max horses reached"
+            : `Add horse (${count}/5)`;
+ 
+        this.removeHorseButton.disabled = count <= 2;
+        this.removeHorseButton.textContent = count <= 2
+            ? "Min horses reached"
+            : `Remove horse (${count}/5)`;
+    }
+ 
     startRace() {
-        // Checks if the race is already running before continuing
         if (this.isRacing) return;
-
-        // If not, it's going to run after this
+        if (!this.allHorsesValid()) return;
+ 
         this.isRacing = true;
-
-        // Attaches key event listener 
-        this.keyListener = (event) => this.handleKeyPress(event);
-        document.addEventListener("keyup", this.keyListener);
+        this.winnerDeclared = false;
+        this.validationError.textContent = "";
+ 
+        this.horses.forEach(horse => horse.lockInputs());
+        this.addHorseButton.disabled = true;
+        this.removeHorseButton.disabled = true;
+        document.addEventListener("keyup", this._onKeyUp);
     }
-
-    // Listens for key presses
+ 
     handleKeyPress(event) {
-//        console.log("key pressed:", event.key); // Can use this to debug
         if (!this.isRacing) return;
-
-        // Makes the key comparison case-insensitive, so it doesn't matter if the user presses uppercase or lowercase
-        const caseInsensitiveKey = event.key.toUpperCase()
-
-        // Moves the correct horse
+ 
+        const pressedKey = event.key.toUpperCase();
+ 
         this.horses.forEach(horse => {
-            if (caseInsensitiveKey === horse.horseKey) {
+            if (pressedKey === horse.horseKey) {
                 horse.move();
             }
         });
     }
-
-    // Handles winner declaration when a horse reaches the finish line
-    declareWinner(name, position) {
-        // If the race is still running, don't declare a winner
-        if (!this.isRacing) return;
-
-        // Stops the race (and the horses) once a horse reaches the finish line
+ 
+    checkWinner(name, position) {
+        if (!this.isRacing || this.winnerDeclared) return;
+ 
         if (position >= 100) {
             this.isRacing = false;
-            document.removeEventListener("keyup", this.keyListener);
-            
-//            console.log("Race finished:", name); // Use for debugging
-            
-            // Displays the winner on top of the racetrack
-            this.shadowRoot.querySelector("#displayWinner").innerHTML = `🏆The winner is ${name}🏆`;
-            
-            // Lets the racehorse and racehistory component know that the race is finished
+            this.winnerDeclared = true;
+ 
+            document.removeEventListener("keyup", this._onKeyUp);
+ 
+            this.displayWinner.innerHTML = `🏆 The winner is ${name}! 🏆`;
+ 
             this.dispatchEvent(new CustomEvent("race-finished", {
-             detail: {
-                 winner: name
-                },
+                detail: { winner: name },
                 bubbles: true,
                 composed: true
             }));
         }
     }
-
-    // Resets the race state
+ 
     resetRace() {
         this.isRacing = false;
-        this.horses.forEach(horse => horse.resetPosition());
-        this.shadowRoot.querySelector("#displayWinner").innerHTML = "";
+        this.winnerDeclared = false;
+        document.removeEventListener("keyup", this._onKeyUp);
+        this.horses.forEach(horse => {
+            horse.resetPosition();
+            horse.unlockInputs();
+        });
+        this.displayWinner.innerHTML = "";
+        this.validationError.textContent = "";
+        this.updateButtons();
     }
 
-    // The styling and HTML for the <race-track> element
     racetrackTemplate() {
         return `
         <style>
         #raceTrack {
-            position: relative; 
-            background-color: var(--racetrack-color);
+            position: relative;
+            background-color: var(--racetrack-color, #E7D4B5);
             width: 60vw;
             min-width: 350px;
             max-width: 1000px;
-            padding: 0 20px;
-            border-radius: 20px;
+            min-height: 300px;
+            padding: 8px 20px;
+            border-radius: 12px;
         }
 
         #finishLine {
@@ -103,21 +182,67 @@ export default class RaceTrack extends HTMLElement {
             left: 95%;
             width: 5px;
             height: 100%;
-            background-color: var(--finishline-color);
+            background-color: var(--finishline-color, #A63636);
+            border-radius: 0 12px 12px 0;
         }
 
         #displayWinner {
             text-align: center;
             font-weight: bold;
-            height: 20px;
+            min-height: 24px;
+            margin-bottom: 4px;
+        }
+
+        #horseButtons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        #addHorse,
+        #removeHorse {
+            flex: 1;
+            max-width: 200px;
+            height: 2.4rem;
+            border-radius: var(--button-radius, 5px);
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--button-transition, 0.5s);
+            border: var(--button-border);
+        }
+
+        #addHorse:hover:not(:disabled),
+        #removeHorse:hover:not(:disabled) {
+            transform: scale(1.05);
+        }
+
+        #addHorse:disabled,
+        #removeHorse:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #addHorse {
+            background-color: var(--startButton-color, #16C47F);
+        }
+
+        #removeHorse {
+            background-color: var(--resetButton-color, #FFD65A);
         }
         </style>
 
+        <p id="validationError"></p>
         <p id="displayWinner"></p>
         <div id="raceTrack">
             <div id="finishLine"></div>
             <slot></slot>
-        </div>       
+        </div>
+        <div id="horseButtons">
+            <button id="addHorse">Add horse (2/5)</button>
+            <button id="removeHorse">Remove horse (2/5)</button>
+        </div>
         `;
     }
 }
