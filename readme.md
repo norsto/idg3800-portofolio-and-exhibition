@@ -1,7 +1,4 @@
 # Portfolio
-Dette er min portfolio-nettside
+Dette er mitt portefølje-repository
 
-
-Portifolio page suggestion
-- https://vercel.com/ 
-
+Nettside: norastorro.no
