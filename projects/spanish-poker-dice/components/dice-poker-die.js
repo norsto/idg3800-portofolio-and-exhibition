@@ -9,7 +9,6 @@ class DicePokerDie extends HTMLElement {
     this.attachShadow({ mode: 'open' });
   
     this.shadowRoot.innerHTML = `
-      <link rel="stylesheet" href="../assets/style.css">
       <style>
         * {
           margin: 0;
@@ -20,112 +19,124 @@ class DicePokerDie extends HTMLElement {
           display: flex;
           flex-direction: column;
           align-items: center;
+          gap: 0.4rem;
         }
-        
+
+        /* Die face */
+        .die {
+          display: flex;
+          background-color: var(--die-bg-color, #FDEDED);
+          height: clamp(55px, 10vw, 90px);
+          width: clamp(55px, 10vw, 90px);
+          border: 3px solid var(--die-border-color, #F875AA);
+          border-radius: 10px;
+          justify-content: center;
+          align-items: center;
+          transition: background-color 0.2s;
+        }
+
         :host([held="true"]) .die {
-          background-color: var(--die-held-color);
+          background-color: var(--die-held-color, #F875AA);
+          border-color: #c4006b;
         }
 
         .dieFace {
-          color: var(--die-face-black);
+          font-size: clamp(1.2rem, 3vw, 2rem);
           font-weight: bold;
+          color: var(--die-face-black, #000);
+          line-height: 1;
         }
-        
+
         .redFace {
-          color: var(--die-face-red);
+          color: var(--die-face-red, #8C1007);
         }
-        
+
+        /* Hold button — default state */
         .holdDie {
-          width: 15vw;
-          height: 2.5rem;
-          min-width: 70px;
-          max-width: 100px;
-          min-height: 2rem;
-          border-radius: 5px;
-          margin-bottom: 1rem;
+          width: clamp(55px, 10vw, 90px);
+          padding: 0.3rem 0;
+          border-radius: 20px;
           border: none;
-          transition: 0.4s;
+          font-size: clamp(0.65rem, 1.2vw, 0.78rem);
+          font-weight: 600;
+          letter-spacing: 0.03em;
+          cursor: pointer;
+          transition: 0.3s;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.12);
+          background: linear-gradient(135deg, #0fad2c, #1a3a17);
+          color: #f1fff0;
+          white-space: nowrap;
+        }
+
+        /* Release button — active state */
+        :host([held="true"]) .holdDie {
+          background: linear-gradient(135deg, #ff7db1, #fd3ea1);
+          color: white;
+          box-shadow: 0 2px 5px rgba(248,117,170,0.35);
         }
 
         .holdDie:hover {
-          background-color: var(--die-held-color);
-          transform: scale(1.05, 1.05);
+          transform: scale(1.08);
+          filter: brightness(1.05);
+          box-shadow: 0 4px 10px rgba(0,0,0,0.18);
         }
 
-        .die {
-          display: flex;
-          background-color: var(--die-bg-color);
-          height: 15vw;
-          width: 15vw; 
-          max-height: 100px;
-          max-width: 100px;
-          border: 3px solid #F875AA; 
-          border-radius: 5px; 
-          justify-content: center;
-          align-items: center;
-          margin: 10%;
+        .holdDie:active {
+          transform: scale(0.96);
         }
       </style>
   
       <div class="dieContainer">
-        <button class="holdDie">hold die</button>
-  
         <div class="die">
-            <p class="dieFace"></p>
-        </div> 
+          <p class="dieFace"></p>
+        </div>
+        <button class="holdDie">hold</button>
       </div>
     `;
   }
 
-    /* eventually put back in style, check css document to get the updated version */
-
-
   connectedCallback() {
     this.giveId();
-    this.shadowRoot.querySelectorAll(".holdDie")[0].addEventListener("click", ()=> {
+    this.shadowRoot.querySelector(".holdDie").addEventListener("click", () => {
       this.heldButtonChange(false);
     });
   }
 
-  disconnectedCallback() {
-
-  }
+  disconnectedCallback() {}
 
   roll() {
-    
-    if(this.getAttribute("held") == "true"){
-      return;
-    }
-    
+    if (this.getAttribute("held") == "true") return;
+
     const randomDieFace = Math.floor(Math.random() * DicePokerDie.dieFace.length);
+    const face = DicePokerDie.dieFace[randomDieFace];
 
-    this.setAttribute("face", DicePokerDie.dieFace[randomDieFace]);
+    this.setAttribute("face", face);
 
-    if (["A", "K", "8"].includes(DicePokerDie.dieFace[randomDieFace])) {
-      this.shadowRoot.querySelector(".dieFace").classList.add("redFace");
+    const faceEl = this.shadowRoot.querySelector(".dieFace");
+    faceEl.textContent = face;
+
+    if (["A", "K", "8"].includes(face)) {
+      faceEl.classList.add("redFace");
     } else {
-      this.shadowRoot.querySelector(".dieFace").classList.remove("redFace");
+      faceEl.classList.remove("redFace");
     }
 
-    this.shadowRoot.querySelectorAll(".dieFace")[0].innerHTML = DicePokerDie.dieFace[randomDieFace];
-    const dieRolled = new CustomEvent("dp:die-rolled", {
+    this.dispatchEvent(new CustomEvent("dp:die-rolled", {
       bubbles: true,
       composed: true,
       detail: {
         dieId: this.getAttribute("die-id"),
-        face: this.getAttribute("face"),
+        face: face,
         owner: this.getAttribute("owner")
       }
-    });
-
-    this.dispatchEvent(dieRolled);;
+    }));
   }
 
-  giveId(){
+  giveId() {
     this.setAttribute("die-id", DicePokerDie.dieId);
-    DicePokerDie.dieId ++;
+    DicePokerDie.dieId++;
 
-    if(DicePokerDie.dieId == 6) {
+    if (DicePokerDie.dieId == 6) {
       DicePokerDie.dieId = 1;
       DicePokerDie.player1 = false;
     }
@@ -135,37 +146,36 @@ class DicePokerDie extends HTMLElement {
     let owner;
     DicePokerDie.dieCounter++;
 
-    if (DicePokerDie.dieCounter < 6){
+    if (DicePokerDie.dieCounter < 6) {
       owner = this.parentElement.parentElement.getAttribute("player1");
     } else {
       owner = this.parentElement.parentElement.getAttribute("player2");
     }
 
-    if (DicePokerDie.dieCounter >= 12){
+    if (DicePokerDie.dieCounter >= 12) {
       DicePokerDie.dieCounter = 0;
     }
 
     this.setAttribute("owner", owner);
   }
 
-  heldButtonChange(roundReset){    
-    const buttonText = this.shadowRoot.querySelectorAll(".holdDie")[0];
+  heldButtonChange(roundReset) {
+    const btn = this.shadowRoot.querySelector(".holdDie");
 
-    if (roundReset){
-        this.setAttribute("held", false);
-        buttonText.innerHTML = `hold die`;
-    }else{
-      if(this.getAttribute("held") === "true") {
-        this.setAttribute("held", false);
-        buttonText.innerHTML = `hold die`;
+    if (roundReset) {
+      this.setAttribute("held", "false");
+      btn.textContent = "hold";
+    } else {
+      if (this.getAttribute("held") === "true") {
+        this.setAttribute("held", "false");
+        btn.textContent = "hold";
       } else {
-        this.setAttribute("held", true);
-        buttonText.innerHTML = `release die`;
+        this.setAttribute("held", "true");
+        btn.textContent = "release";
       }
     }
 
-
-    const holdDie = new CustomEvent("dp:die-held-changed", {
+    this.dispatchEvent(new CustomEvent("dp:die-held-changed", {
       bubbles: true,
       composed: true,
       detail: {
@@ -173,12 +183,8 @@ class DicePokerDie extends HTMLElement {
         held: this.getAttribute("held"),
         owner: this.getAttribute("owner")
       }
-    });
-
-    this.dispatchEvent(holdDie);
-
+    }));
   }
-
 }
 
 customElements.define('dice-poker-die', DicePokerDie);

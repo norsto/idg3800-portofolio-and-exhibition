@@ -1,113 +1,181 @@
-/* 
-  Spanish Dice Poker - Component Styling
-  
-  This file is for styling your Web Components and custom design.
-  
-  IMPORTANT:
-  - layout.css contains only the main page layout (header, main, footer, intro section)
-  - Use THIS file (style.css) to style your game components and create your theme:
-    * dice-poker-board
-    * dice-poker-die
-    * dice-poker-monitor
-    * Buttons, game board, dice, player sections, etc.
-  
-  REQUIREMENTS:
-  - Use CSS custom properties (CSS variables) for theming
-  - Ensure all components are responsive (mobile, tablet, desktop)
-  Start adding your styles below:
-*/
+/* Spanish Dice Poker - Component Styling */
 
 :root {
-  --board-bg-color: #A5C89E;
-  --die-bg-color: #FDEDED;
-  --die-face-red: #8C1007;
-  --die-face-black: #000;
-  --die-held-color: #F875AA;    /* Highlight when held */
+    --board-bg-color: #c0dfba;
+    --die-bg-color: #FDEDED;
+    --die-face-red: #8C1007;
+    --die-face-black: #000;
+    --die-held-color: #F875AA;
+    --die-border-color: #F875AA;
+    --button-radius: 8px;
+    --button-transition: 0.3s;
 }
 
-* {
-    margin: 0;
-    box-sizing: border-box;
+/* ===== BOARD ===== */
+
+dice-poker-board {
+    background-color: var(--board-bg-color);
+    border-radius: 12px;
+    padding: clamp(0.75rem, 2vw, 1.5rem);
+    width: 100%;
 }
 
-/* dice css */
-.dieHolder {
-  /* display: flex;
-  flex-wrap: wrap; */
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(70px, auto));
-  /* grid-template-columns: 20% 20% 20% 20% 20%; */
-  grid-auto-rows: 1fr;
-  grid-gap: 1em 1em;
-  justify-content: center;
-  margin: 1%;
+/* ===== BOARD CONTROLS ===== */
+
+#flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
 
-.holdDie {
-  width: 15vw; /* originally 100 px*/
-  height: 2.5rem;
-  min-width: 70px;
-  max-width: 100px;
-  min-height: 2rem;
-  border-radius: 5px;
-  margin-bottom: 1rem;
-  border: none;
-  /* background-color: var(--die-bg-color); */
-  transition: 0.5s;
+#playerNames {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
 }
 
-.holdDie:hover {
-  background-color: var(--die-held-color);
-  /* color: $lightText; */
-  transform: scale(1.2, 1.2);
-
+.changePlayerName {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
 }
 
-.die {
-  display: flex;
-  /* flex-wrap: wrap; */
-  background-color: var(--die-bg-color);
-  /* height: 6rem;
-  width: 6rem; */
-  height: 15vw;
-  width: 15vw; /* originally 100px */
-  max-height: 100px;
-  max-width: 100px;
-  border: 3px solid #F875AA; 
-  border-radius: 5px; 
-  justify-content: center;
-  align-items: center;
-  /* margin-left: 1em;
-  margin-right: 1em; */
-  margin: 10%;
+.changePlayerName label {
+    font-size: 0.8rem;
+    font-weight: bold;
+    background-color: var(--die-bg-color);
+    padding: 2px 6px;
+    border-radius: 4px;
 }
 
+.changePlayerName input {
+    padding: 0.4rem 0.6rem;
+    border-radius: var(--button-radius);
+    border: 1px solid #ccc;
+    font-size: 0.9rem;
+    width: clamp(80px, 15vw, 140px);
+}
 
-/* Boards css */
+#gameSettings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
+}
+
+#bestOf {
+    padding: 0.4rem 0.6rem;
+    border-radius: var(--button-radius);
+    border: 1px solid #ccc;
+    font-size: 0.9rem;
+    background: white;
+}
+
 #checkboxContainer {
-  display: flex;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
 }
 
 #checkboxContainer label {
-  margin-left: 0.5em;
-  background-color: var(--die-bg-color);
+    font-size: 0.85rem;
+    background-color: var(--die-bg-color);
+    padding: 2px 6px;
+    border-radius: 4px;
 }
 
 #include-straight {
-  height: 1.5rem;
-  width: 1.5rem;
-  border-radius: 10px;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-dice-poker-board {
-  height: 50%;
-  width: 90%;
-  background-color: var(--board-bg-color);
-  border-radius: 1em;
-  margin: 1em;
-  padding: 1em;
+#boardButtons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+#boardButtons button {
+    padding: 0.5rem 1rem;
+    border-radius: var(--button-radius);
+    border: 1px solid rgba(0,0,0,0.15);
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    cursor: pointer;
+    transition: var(--button-transition);
+    background-color: var(--die-bg-color);
+    white-space: nowrap;
+}
+
+#boardButtons button:hover {
+    background-color: var(--die-held-color);
+    transform: scale(1.05);
+}
+
+/* ===== DIE HOLDERS ===== */
+
+.dieHolder {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+}
+
+/* ===== INDIVIDUAL DIE (inside shadow DOM, set via custom properties) ===== */
+
+.die {
+    display: flex;
+    background-color: var(--die-bg-color);
+    width: clamp(60px, 10vw, 100px);
+    height: clamp(60px, 10vw, 100px);
+    border: 3px solid var(--die-border-color);
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.holdDie {
+    width: clamp(60px, 10vw, 100px);
+    height: 2rem;
+    border-radius: var(--button-radius);
+    border: 1px solid rgba(0,0,0,0.15);
+    font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+    cursor: pointer;
+    transition: var(--button-transition);
+    background-color: white;
+}
+
+.holdDie:hover {
+    background-color: var(--die-held-color);
+    transform: scale(1.05);
+}
+
+/* ===== BOARD / CHECKBOX ===== */
+
+#checkboxContainer {
+    display: flex;
+    align-items: center;
+}
+
+/* ===== HISTORY ===== */
+
+#winners {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 #body {
-  background: #f5f5f5;
+    background: #fdf0f5;
 }

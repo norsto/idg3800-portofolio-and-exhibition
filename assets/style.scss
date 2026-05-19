@@ -1,15 +1,3 @@
-// $night: #0d54d0;
-// $dawn: #1c80e5;
-// $sunrise: #ffde63;
-// $morning: #a4c9f5;
-// $afternoon: #89bbef;
-// $evening: #70afef;
-// $sunset: #ea5b6f;
-
-// $skyBlue: #8CA9FF;
-// $afternoon: #799EFF;
-// $clear: #FA5C5C;
-
 $night: #003e9c;
 $dawn: #3d8bff;
 $sunrise: #ffdf66;
@@ -21,42 +9,38 @@ $golden: #ffa600;
 $sunset: #ff6a98;
 
 $deepNight: #001354;
-
 $nightTransition: #052877;
-
 $twilight: #2563cd;
-
 $deepSunset: #FF437D;
-
 $lightMorning: #c9deff;
 $lightGolden: #ffe896;
-
 $goldenTransition: #fdd976;
-
 $deepGolden: #ff8a46;
-
 $eveningLight: #ff7674;
-
 $deepEvening: #1562d7;
-
 $sunsetTransition: #ef75c0;
 $sunsetTransition2: #d078dc;
-
 $sunriseTransition: #ebb9ff;
 $sunriseTransition2: #ffa2d0;
 
-    // if (degrees < -18) return "night";
+$glass-bg: rgba(255, 255, 255, 0.55);
+$glass-border: rgba(255, 255, 255, 0.3);
+$glass-bg-light: rgba(255, 255, 255, 0.5);
+$glass-border-light: rgba(255, 255, 255, 0.125);
+$text-dark: #111;
+$link-color: #0047b3;
+$link-hover: #002f7a;
+$text-light: rgb(247, 249, 255);
+$text-on-light: #1a1a1a;
 
-    // if (isRising) {
-    //     if (degrees < -12) return "dawn"; done
-    //     else if (degrees < -6) return "sunrise"; done
-    //     else return "morning"; done
-    // } else {
-    //     if (degrees > 6) return "afternoon"; done
-    //     else if (degrees > 0) return "golden"; done
-    //     else if (degrees > -6) return "sunset"; done
-    //     else if (degrees > -12) return "evening"; done
-    //     else return "night"; done
+@mixin glass($bg: $glass-bg, $border: $glass-border) {
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    background-color: $bg;
+    border: 1px solid $border;
+}
+
+// ===== RESET =====
 
 * {
     margin: 0;
@@ -64,52 +48,82 @@ $sunriseTransition2: #ffa2d0;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-body {
-    // transition: background-color 10s ease-in-out;
-    background: $afternoon;
-    // background-color: $sunset;
-    // background: linear-gradient($evening, $sunset);
-    // background: linear-gradient($morning, $sunrise);
+// ===== TILGJENGELIGHET =====
+
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background: #fff;
+    color: #000;
+    padding: 8px 16px;
+    z-index: 1000;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom-right-radius: 4px;
+
+    &:focus { top: 0; }
 }
 
-.night { 
-    background: linear-gradient($deepNight, $nightTransition, $night); 
-    color: white;
-} // done
-.dawn { background: linear-gradient($night 5%, $twilight, $dawn 60% 80%, $sunriseTransition2, $lightGolden);} //done
-.morning { background: linear-gradient($morning, $afternoon);} // done
-.afternoon { background: linear-gradient($afternoon, $evening);} // done
+// ===== BAKGRUNNSPERIODER =====
 
-.sunrise { background: linear-gradient($evening, $morning, $sunriseTransition, $sunriseTransition2, $sunrise, $deepSunrise); } // done
-.evening { background: linear-gradient($deepEvening 60%, $dawn, $evening, $lightGolden, $eveningLight);} //done
-.golden { background: linear-gradient($evening 0.2em, $lightGolden, $goldenTransition, $deepSunrise, $golden, $deepGolden); } // done
-.sunset { background: linear-gradient($evening 10%, $sunsetTransition, $sunset, $deepSunset); } // done
+body {
+    background: $afternoon;
+    color: $text-on-light;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.night   { background: linear-gradient($deepNight, $nightTransition, $night); color: $text-light; }
+.dawn    { background: linear-gradient($night 5%, $twilight, $dawn 60% 80%, $sunriseTransition2, $lightGolden); color: $text-light; }
+.sunrise { background: linear-gradient($evening, $morning, $sunriseTransition, $sunriseTransition2, $sunrise, $deepSunrise); color: $text-on-light; }
+.morning { background: linear-gradient($morning, $afternoon); color: $text-on-light; }
+.afternoon { background: linear-gradient($afternoon, $evening); color: $text-on-light; }
+.golden  { background: linear-gradient($evening 0.2em, $lightGolden, $goldenTransition, $deepSunrise, $golden, $deepGolden); color: $text-on-light; }
+.sunset  { background: linear-gradient($evening 10%, $sunsetTransition, $sunset, $deepSunset); color: $text-on-light; }
+.evening { background: linear-gradient($deepEvening 60%, $dawn, $evening, $lightGolden, $eveningLight); color: $text-light; }
+
+// ===== HEADER =====
 
 .header {
-    padding: 24px 24px 16px;
+    @include glass();
+    color: $text-dark;
+    padding: 16px 24px;
+    height: 5rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    &__title {
-        text-align: center;
-        margin-bottom: 16px;
-    }
-
-    &__nav {
-        justify-self: center;
+    &__nav { 
+        justify-self: center; 
+        align-items: center;
     }
 
     &__nav-list {
         display: flex;
         gap: 4px;
-    }
-
-    &__nav-item {
         list-style: none;
+        padding: 0;
+        justify-content: center;
     }
 
     &__nav-link {
         padding: 4px 12px;
+        border-radius: 4px;
+        text-decoration: none;
+        color: inherit;
+
+        &:hover, &:focus {
+            text-decoration: underline;
+            outline: 2px solid currentColor;
+            outline-offset: 2px;
+        }
     }
 }
+
+// ===== OM MEG =====
 
 .about {
     padding: 40px 24px;
@@ -117,49 +131,39 @@ body {
     &__heading {
         text-align: center;
         margin-bottom: 24px;
+    }
 
-        &--night {
-            text-align: center;
-            margin-bottom: 24px;
-            color: aliceblue;
-        }
+    &__card {
+        @include glass();
+        max-width: 900px;
+        margin: 0 auto;
+        border-radius: 16px;
+        padding: 32px;
+        color: $text-dark;
     }
 
     &__flex {
         display: flex;
         gap: 40px;
         align-items: flex-start;
-        max-width: 900px;
-        margin: 0 auto;
 
         @media (max-width: 900px) {
             flex-direction: column-reverse;
         }
     }
 
-    &__description {
-        flex: 1;
-        // width: 40%;
-    }
+    &__description { flex: 1; }
 
     &__text {
         line-height: 1.6;
         margin-bottom: 16px;
 
-        &--night {
-            line-height: 1.6;
-            margin-bottom: 16px;
-            color: aliceblue;
-        }
-
-        &:last-child {
-            margin-bottom: 0;
-        }
+        &:last-child { margin-bottom: 0; }
     }
 
     &__figure {
-        // flex-shrink: 0;
         width: 280px;
+        flex-shrink: 0;
 
         @media (max-width: 900px) {
             width: 100%;
@@ -172,26 +176,21 @@ body {
         width: 100%;
         height: auto;
         border-radius: 150px 150px 5px 5px;
-        filter:saturate(120%);
-        // filter: blur(100%);
-        // filter:grayscale(1);
+        filter: saturate(120%);
     }
 }
+
+// ===== PROSJEKTER =====
 
 .projects {
     padding: 0 24px 40px;
     max-width: 2000px;
     justify-self: center;
+    width: 100%;
 
     &__heading {
         text-align: center;
         margin-bottom: 24px;
-
-        &--night {
-            text-align: center;
-            margin-bottom: 24px;
-            color: aliceblue;
-        }
     }
 
     &__grid {
@@ -205,87 +204,133 @@ body {
     }
 }
 
-// .about,
-// .card {
-//     /* Glassmorphism card effect was generated by https://generator.ui.glass/ */
-//     backdrop-filter: blur(12px) saturate(200%);
-//     -webkit-backdrop-filter: blur(12px) saturate(200%);
-//     background-color: rgba(239, 245, 255, 0.5);
-//     border-radius: 12px;
-//     border: 1px solid rgba(255, 255, 255, 0.125);
-// }
+// ===== PROSJEKTKORT =====
 
 .card {
+    @include glass($glass-bg-light, $glass-border-light);
     display: flex;
-    flex-direction: row;
-    min-height: 180px;
+    flex-direction: column; // Bildet alltid øverst
     overflow: hidden;
-
-    /* Glassmorphism card effect was generated by https://generator.ui.glass/ */
-    backdrop-filter: blur(12px) saturate(150%);
-    -webkit-backdrop-filter: blur(12px) saturate(200%);
-    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.125);
+    color: $text-dark;
+
+    &__thumbnail {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
 
     &__info {
         flex: 1;
         padding: 20px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         gap: 8px;
     }
 
-    &__title {
-        // inherits from h3
-    }
-
-    &__description {
-        line-height: 1.5;
-    }
+    &__description { line-height: 1.5; }
 
     &__links {
         display: flex;
         gap: 12px;
         margin-top: 4px;
+        flex-wrap: wrap;
     }
 
     &__link {
-        // link styles here
+        color: $link-color;
+        text-decoration: underline;
+        border-radius: 2px;
+
+        &:hover, &:focus {
+            color: $link-hover;
+            outline: 2px solid $link-color;
+            outline-offset: 2px;
+        }
+    }
+}
+
+// ===== FOOTER =====
+
+.footer {
+    @include glass();
+    margin-top: auto;
+    color: $text-dark;
+    padding: 32px 24px 16px;
+    border-top: 1px solid $glass-border;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+
+    &__heading {
+        text-align: center;
+        margin-bottom: 16px;
+        font-size: 1.2rem;
     }
 
-    &__thumbnail {
-        width: 30%;
-        flex-shrink: 0;
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        list-style: none;
+        padding: 0;
+        margin-bottom: 24px;
+    }
 
-        @media (max-width: 900px) {
-            width: 100%;
-            height: 230px;
+    &__link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        color: $text-dark;
+        background: rgba(255, 255, 255, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.2s, box-shadow 0.2s;
+
+        i {
+            font-size: 1.1rem;
+            color: $link-color;
+        }
+
+        p {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        &:hover, &:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            outline: 2px solid $text-dark;
+            outline-offset: 2px;
         }
     }
 
-    &__image {
-        width: 100%;
-        height: 100%;
-        padding-right: 10px;
-        object-fit: contain;
+    &__attribution {
+        display: block;
+        text-align: center;
+        font-size: 0.8rem;
+        color: #444;
 
-        @media (max-width: 900px) {
-            margin: 0.5rem auto 0.5rem auto;
-            display: block;
-            max-width: 300px;
-            max-height: 100%;
-            // margin-left: auto;
-            // margin-right: auto;
-            object-fit: fill;
+        a {
+            color: $link-color;
+            text-decoration: underline;
+
+            &:hover, &:focus { color: $link-hover; }
         }
     }
+}
 
-    @media (max-width: 900px) {
-        flex-direction: column-reverse;
-        // max-width: 600px;
-        margin: 0 5% 0 5%;
-        justify-self: center;
-    }
+// ===== SEKSJONER =====
+section {
+    margin-bottom: 5rem;
 }

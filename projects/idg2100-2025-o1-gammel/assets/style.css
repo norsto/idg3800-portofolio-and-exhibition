@@ -1,11 +1,75 @@
-/* Your styles go here */
+/* ===== CSS CUSTOM PROPERTIES ===== */
 :root {
-    --racetrack-color: #E7D4B5;
-    --finishline-color: #A63636;
+    --racetrack-color: #f9dcae;
+    --finishline-color: #da3838;
     --startButton-color: #16C47F;
     --resetButton-color: #FFD65A;
+
+    --button-radius: 5px;
+    --button-padding: 10px;
+    --button-font-size: 18px;
+    --button-width: 5rem;
+    --button-transition: 0.5s;
+    --button-border: 2px solid rgb(9, 9, 9);
 }
 
+/* ===== BODY ===== */
+
 #body {
-    background: whitesmoke;
+    background: rgb(242, 253, 255);
+    min-height: 100vh;
+}
+
+/* ===== SHARED SITE HEADER ===== */
+
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    background-color: rgba(255, 88, 163, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    color: #111;
+}
+
+#nav ul {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#nav a {
+    display: block;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #111;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+#nav a:hover,
+#nav a:focus {
+    background: rgba(229, 98, 163, 0.699);
+    outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+    .site-header {
+        justify-content: flex-start;
+    }
+
+    #nav ul {
+        flex-direction: column;
+        gap: 2px;
+    }
 }
