@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <!-- SunCalc library by Vladimir Agafonkin, https://github.com/mourner/suncalc , Licensed under BSD-2-Clause -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/suncalc/1.9.0/suncalc.min.js" defer></script>
     <script type="module" src="frontend/index.js" defer></script>
     <title>Nora Storrø Portefølje</title>
 </head>
 <body class="sunrise">
 
+<!-- Denne biten kan brukes til testing dersom du ikke vil døgne -->
 <!-- <div style="position:fixed; bottom:16px; right:16px; z-index:9999;">
     <button onclick="
         const periods = ['night','dawn','sunrise','morning','afternoon','golden','sunset','evening'];
@@ -18,7 +21,7 @@
         const next = (current + 1) % periods.length;
         document.body.className = periods[next];
     ">Neste periode</button>
-</div> -->
+</div>-->
 
 <a class="skip-link" href="#main-content">Hopp til innhold</a>
 
@@ -27,6 +30,9 @@
         <ul class="header__nav-list">
             <li class="header__nav-item">
                 <a class="header__nav-link" href="#about-target">Om meg</a>
+            </li>
+            <li class="header__nav-item">
+                <a class="header__nav-link" href="#skills-target">Ferdigheter</a>
             </li>
             <li class="header__nav-item">
                 <a class="header__nav-link" href="#projects-target">Prosjekter</a>
@@ -79,14 +85,15 @@
                     <p class="card__description">
                         Et sanntidsdashboard for AMK-sentraler som visualiserer anropsvolum, svartider og driftsmeldinger,
                         utviklet i samarbeid med HDO (Helsetjenestens driftsorganisasjon for nødnett).
-                        Prosjektet inkluderer brukerintervjuer og prototyping.
+                        Prosjektet inkluderte brukerintervjuer og prototyping.
                     </p>
                     <p class="card__description">IDG3920 Bacheloroppgave BWU, 5. og 6. semester.</p>
                     <div class="card__links">
-                        <a class="card__link" href="http://hannasamborska.no/" target="_blank" rel="noopener noreferrer">
+                        <a class="card__link" href="infoPages/bachelor.html">Mer om prosjektet</a>
+                        <a class="card__link" href="http://hannasamborska.no/" target="_blank">
                             Hanna Samborska
                         </a>
-                        <a class="card__link" href="https://fredrikeide.myportfolio.com/" target="_blank" rel="noopener noreferrer">
+                        <a class="card__link" href="https://fredrikeide.myportfolio.com/" target="_blank">
                             Fredrik Johan Eide
                         </a>
                     </div>
@@ -132,6 +139,98 @@
         </div>
     </section>
 
+    <section class="skills" id="skills-target" aria-labelledby="skills-heading">
+        <h2 class="skills__heading" id="skills-heading">Ferdigheter og teknologier</h2>
+
+        <div class="skills__grid">
+
+            <div class="skills__card">
+                <h3 class="skills__category">Frontend</h3>
+                <ul class="skills__list">
+                    <li class="skills__item">
+                        <i class="devicon-html5-plain colored" aria-hidden="true"></i>
+                        <p>HTML</p>
+                    </li>
+                    <li class="skills__item">
+                        <i class="devicon-css3-plain colored" aria-hidden="true"></i>
+                        <p>CSS / SCSS</p>
+                    </li>
+                    <li class="skills__item">
+                        <i class="devicon-javascript-plain colored" aria-hidden="true"></i>
+                        <p>JavaScript</p>
+                    </li>
+                    <li class="skills__item">
+                        <i class="devicon-react-original colored" aria-hidden="true"></i>
+                        <p>React</p>
+                    </li>
+                    <li class="skills__item">
+                        <i class="devicon-nextjs-plain" aria-hidden="true"></i>
+                        <p>Next.js</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="skills__card">
+                <h3 class="skills__category">Backend</h3>
+                <ul class="skills__list">
+                    <li class="skills__item">
+                        <i class="devicon-nodejs-plain colored" aria-hidden="true"></i>
+                        <p>Node.js</p>
+                    </li>
+                    <li class="skills__item">
+                        <i class="devicon-express-original" aria-hidden="true"></i>
+                        <p>Express.js</p>
+                    </li>
+                    <li class="skills__item">
+                        <i class="devicon-mongodb-plain colored" aria-hidden="true"></i>
+                        <p>MongoDB</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="skills__card">
+                <h3 class="skills__category">Infrastruktur</h3>
+                <ul class="skills__list">
+                    <li class="skills__item">
+                        <i class="devicon-github-original" aria-hidden="true"></i>
+                        <p>GitHub</p>
+                    </li>
+                    <li class="skills__item">
+                        <i class="devicon-vercel-original" aria-hidden="true"></i>
+                        <p>Vercel</p>
+                    </li>
+                    <li class="skills__item">
+                        <i class="devicon-npm-original-wordmark colored" aria-hidden="true"></i>
+                        <p>NPM</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="skills__card">
+                <h3 class="skills__category">Verktøy</h3>
+                <ul class="skills__list">
+                    <li class="skills__item">
+                        <i class="devicon-vscode-plain colored" aria-hidden="true"></i>
+                        <p>VS Code</p>
+                    </li>
+                    <li class="skills__item">
+                        <i class="devicon-photoshop-plain colored" aria-hidden="true"></i>
+                        <p>Photoshop</p>
+                    </li>
+                    <li class="skills__item">
+                        <i class="devicon-figma-plain colored" aria-hidden="true"></i>
+                        <p>Figma</p>
+                    </li>
+                    <li class="skills__item">
+                        <i class="fa-solid fa-terminal" aria-hidden="true"></i>
+                        <p>Terminal</p>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
 </main>
 
 <footer class="footer" id="footer-target">
@@ -147,17 +246,17 @@
             <li class="footer__item">
                 <a class="footer__link" href="tel:+4712345678">
                     <i class="fa-solid fa-phone" aria-hidden="true"></i>
-                    <p>94 97 29 08</p>
+                    <p>+47 94 97 29 08</p>
                 </a>
             </li>
             <li class="footer__item">
-                <a class="footer__link" href="https://www.linkedin.com/in/nora-storr%C3%B8-6a7269406/" target="_blank" rel="noopener noreferrer">
+                <a class="footer__link" href="https://www.linkedin.com/in/nora-storr%C3%B8-6a7269406/" target="_blank">
                     <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
                     <p>LinkedIn</p>
                 </a>
             </li>
             <li class="footer__item">
-                <a class="footer__link" href="https://github.com/norsto" target="_blank" rel="noopener noreferrer">
+                <a class="footer__link" href="https://github.com/norsto" target="_blank">
                     <i class="fa-brands fa-github" aria-hidden="true"></i>
                     <p>GitHub</p>
                 </a>
@@ -165,7 +264,7 @@
         </ul>
     </div>
     <small class="footer__attribution">
-        Solberegninger av <a href="https://github.com/mourner/suncalc" target="_blank" rel="noopener noreferrer">SunCalc <span class="visually-hidden">(åpnes i ny fane)</span></a> av Vladimir Agafonkin
+        Solberegninger av <a href="https://github.com/mourner/suncalc" target="_blank">SunCalc <span class="visually-hidden">(åpnes i ny fane)</span></a> av Vladimir Agafonkin
     </small>
 </footer>
 

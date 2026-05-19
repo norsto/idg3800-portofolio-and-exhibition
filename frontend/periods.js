@@ -1,3 +1,7 @@
+// SunCalc library by Vladimir Agafonkin
+// https://github.com/mourner/suncalc
+// Licensed under BSD-2-Clause
+
 // Gets the sun's current altitude in degrees and whether it's rising or setting
 function _getSunPosition(lat, lon) {
     const now = new Date();
