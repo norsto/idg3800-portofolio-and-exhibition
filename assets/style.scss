@@ -319,7 +319,8 @@ body {
         display: block;
         text-align: center;
         font-size: 0.8rem;
-        color: #444;
+        color: $text-dark;
+        margin-bottom: 10px;
 
         a {
             color: $link-color;

@@ -288,7 +288,8 @@ body {
   display: block;
   text-align: center;
   font-size: 0.8rem;
-  color: #444;
+  color: #111;
+  margin-bottom: 10px;
 }
 .footer__attribution a {
   color: #0047b3;
